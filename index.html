@@ -3,276 +3,496 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ritirupa Dey — PhD Student, Computer Science</title>
-  <meta name="description" content="Personal website for Ritirupa Dey — developer, designer, creator." />
-  <meta name="theme-color" content="#111827" />
+  <title>Ritirupa Dey — PhD Student in Computer Science</title>
+  <meta name="description" content="Personal website for Ritirupa Dey — PhD student working in robotics, AI, and machine learning." />
+  <meta name="theme-color" content="#0f172a" />
 
-  <!-- Fallback font stack, simple modern layout, single-file site -->
   <style>
-    :root{
-      --bg:#0f1724; /* dark */
-      --card:#0b1220;
-      --muted:#9ca3af;
-      --accent:#7c3aed;
-      --glass: rgba(255,255,255,0.04);
-      --radius:12px;
-      --ff: Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    [data-theme="light"]{
-      --bg: #f8fafc;
-      --card:#ffffff;
-      --muted:#6b7280;
-      --accent:#6d28d9;
-      --glass: rgba(15,23,42,0.04);
+    :root {
+      --bg: #07111f;
+      --bg-2: #0b1730;
+      --card: rgba(8, 15, 30, 0.72);
+      --card-border: rgba(255, 255, 255, 0.10);
+      --text: #e5eefb;
+      --muted: #aab7cf;
+      --accent: #7c3aed;
+      --accent-2: #22d3ee;
+      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
+      --radius: 24px;
+      --ff: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
     }
 
-    *{box-sizing:border-box}
-    html,body{height:100%}
-    body{
-      margin:0;
-      font-family:var(--ff);
-      background:linear-gradient(180deg,var(--bg),#081022);
-      color:color-mix(in srgb, white 95%, black 5%);
-      -webkit-font-smoothing:antialiased;
-      line-height:1.45;
-      padding:24px;
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      font-family: var(--ff);
+      color: var(--text);
+      background:
+        radial-gradient(circle at top left, rgba(124, 58, 237, 0.28), transparent 28%),
+        radial-gradient(circle at 85% 10%, rgba(34, 211, 238, 0.18), transparent 24%),
+        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.06), transparent 30%),
+        linear-gradient(180deg, var(--bg), var(--bg-2));
+      min-height: 100vh;
+      line-height: 1.55;
+      overflow-x: hidden;
     }
 
-    /* Container */
-    .site{
-      max-width:980px;
-      margin:0 auto;
+    /* Robotics-style overlay background */
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      opacity: 0.18;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
+        radial-gradient(circle at 20px 20px, rgba(34, 211, 238, 0.55) 1px, transparent 1.5px);
+      background-size: 42px 42px, 42px 42px, 42px 42px;
+      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 92%);
     }
 
-    header{
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      gap:16px;
-      margin-bottom:28px;
+    .wrap {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+      position: relative;
+      z-index: 1;
     }
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,var(--accent),#ef4444);
-      display:grid;place-items:center;font-weight:700;color:white
+
+    header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      padding: 22px 0;
     }
-    nav a{color:var(--muted);text-decoration:none;margin-left:16px;font-weight:600}
-    nav a:hover{color:var(--accent)}
 
-    .hero{
-      display:grid;grid-template-columns:1fr;gap:18px;padding:22px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,0.02), transparent);
-      box-shadow: 0 6px 20px rgba(2,6,23,0.6);
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      text-decoration: none;
+      color: inherit;
     }
-    .hero .title{font-size:clamp(22px,4.2vw,36px);margin:0}
-    .hero .subtitle{color:var(--muted);margin:0}
-    .cta{display:inline-flex;align-items:center;gap:10px;padding:10px 14px;border-radius:10px;background:var(--accent);color:white;text-decoration:none}
 
-    /* Grid sections */
-    .grid-2{display:grid;grid-template-columns:1fr;gap:18px;margin-top:18px}
-    @media(min-width:880px){.grid-2{grid-template-columns:1fr 320px}}
+    .brand-mark {
+      width: 48px;
+      height: 48px;
+      border-radius: 16px;
+      display: grid;
+      place-items: center;
+      font-weight: 800;
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
+    }
 
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow: 0 4px 14px rgba(2,6,23,0.5)}
-    .muted{color:var(--muted)}
+    .brand-text strong { display: block; font-size: 1rem; }
+    .brand-text span { display: block; color: var(--muted); font-size: 0.92rem; }
 
-    .projects{display:grid;grid-template-columns:1fr;gap:12px}
-    @media(min-width:640px){.projects{grid-template-columns:repeat(2,1fr)}}
-    .project{padding:14px;border-radius:10px;background:linear-gradient(180deg,var(--glass),transparent)}
-    .project h4{margin:0 0 8px 0}
-    .project p{margin:0;color:var(--muted);font-size:14px}
+    nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      flex-wrap: wrap;
+    }
 
-    footer{margin-top:28px;color:var(--muted);font-size:13px}
+    nav a {
+      color: var(--muted);
+      text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s ease;
+    }
 
-    /* smaller utilities */
-    .stack{display:flex;gap:8px;flex-wrap:wrap}
-    .chip{padding:6px 8px;border-radius:999px;background:transparent;border:1px solid rgba(255,255,255,0.04);font-size:13px;color:var(--muted)}
+    nav a:hover { color: white; }
 
-    /* nav toggle for mobile */
-    .nav-toggle{display:none}
-    @media(max-width:640px){nav{display:none}.nav-toggle{display:inline-flex}}
+    .hero {
+      display: grid;
+      grid-template-columns: 1.15fr 0.85fr;
+      gap: 24px;
+      align-items: stretch;
+      margin-top: 16px;
+    }
 
-    /* theme toggle */
-    .theme-btn{background:transparent;border:1px solid rgba(255,255,255,0.06);padding:8px;border-radius:8px;color:var(--muted);cursor:pointer}
+    .panel {
+      background: var(--card);
+      border: 1px solid var(--card-border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(18px);
+    }
 
-    /* contact form simple */
-    .form-row{display:flex;flex-direction:column;gap:8px}
-    input,textarea{padding:10px;border-radius:8px;border:1px solid rgba(255,255,255,0.04);background:transparent;color:inherit}
-    button[type="submit"]{padding:10px 12px;border-radius:10px;border:none;background:var(--accent);color:white;cursor:pointer}
+    .hero-copy {
+      padding: 34px;
+      overflow: hidden;
+      position: relative;
+    }
 
-    /* small animation */
-    .fade-up{transform:translateY(8px);opacity:0;animation:fadeUp .6s ease forwards}
-    @keyframes fadeUp{to{transform:none;opacity:1}} 
+    .eyebrow {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--muted);
+      font-size: 0.92rem;
+      margin-bottom: 18px;
+    }
+
+    .eyebrow-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: var(--accent-2);
+      box-shadow: 0 0 16px rgba(34, 211, 238, 0.8);
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.4rem, 5vw, 4.8rem);
+      line-height: 0.96;
+      letter-spacing: -0.04em;
+    }
+
+    .grad {
+      background: linear-gradient(90deg, white, #c4b5fd 45%, #67e8f9);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+
+    .hero-copy p {
+      max-width: 62ch;
+      color: var(--muted);
+      font-size: 1.05rem;
+      margin: 18px 0 0;
+    }
+
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      padding: 12px 18px;
+      border-radius: 14px;
+      text-decoration: none;
+      font-weight: 700;
+      border: 1px solid rgba(255,255,255,0.10);
+      transition: 0.2s ease;
+    }
+
+    .btn-primary {
+      color: white;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.28);
+    }
+
+    .btn-secondary {
+      color: var(--text);
+      background: rgba(255,255,255,0.04);
+    }
+
+    .btn:hover { transform: translateY(-1px); }
+
+    .hero-visual {
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
+    }
+
+    .photo-card {
+      position: relative;
+      aspect-ratio: 0.92 / 1;
+      overflow: hidden;
+      border-radius: calc(var(--radius) - 4px);
+      border: 1px solid rgba(255,255,255,0.10);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.38)),
+        url("assets/photo.jpg") center/cover no-repeat;
+      min-height: 440px;
+    }
+
+    .photo-overlay {
+      position: absolute;
+      inset: auto 0 0 0;
+      padding: 18px;
+      background: linear-gradient(180deg, transparent, rgba(5,10,20,0.92));
+    }
+
+    .photo-overlay strong {
+      display: block;
+      font-size: 1.05rem;
+      margin-bottom: 4px;
+    }
+
+    .photo-overlay span {
+      color: #cbd5e1;
+      font-size: 0.92rem;
+    }
+
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 12px;
+    }
+
+    .stat {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      text-align: center;
+    }
+
+    .stat strong {
+      display: block;
+      font-size: 1.2rem;
+      margin-bottom: 4px;
+    }
+
+    .stat span { color: var(--muted); font-size: 0.88rem; }
+
+    .grid {
+      display: grid;
+      grid-template-columns: 1.1fr 0.9fr;
+      gap: 24px;
+      margin-top: 24px;
+    }
+
+    .card {
+      padding: 26px;
+    }
+
+    .card h2, .card h3 {
+      margin: 0 0 14px;
+      letter-spacing: -0.02em;
+    }
+
+    .card p { margin-top: 0; color: var(--muted); }
+
+    .chips {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .chip {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 9px 12px;
+      border-radius: 999px;
+      background: rgba(255,255,255,0.05);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--text);
+      font-size: 0.92rem;
+      text-decoration: none;
+    }
+
+    .section-title {
+      display: flex;
+      align-items: baseline;
+      justify-content: space-between;
+      gap: 18px;
+      margin-bottom: 14px;
+    }
+
+    .section-title span {
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .item {
+      padding: 16px;
+      border-radius: 18px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .item strong { display: block; margin-bottom: 6px; }
+    .item span { color: var(--muted); font-size: 0.95rem; }
+
+    .footer {
+      padding: 28px 0 40px;
+      color: var(--muted);
+      font-size: 0.92rem;
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .footer a { color: #d8dbe8; text-decoration: none; }
+    .footer a:hover { text-decoration: underline; }
+
+    @media (max-width: 900px) {
+      .hero, .grid { grid-template-columns: 1fr; }
+      .photo-card { min-height: 380px; }
+      header { flex-direction: column; align-items: flex-start; }
+    }
+
+    @media (max-width: 640px) {
+      .wrap { width: min(100% - 20px, 1120px); }
+      .hero-copy, .card { padding: 20px; }
+      nav { gap: 14px; }
+      .stats { grid-template-columns: 1fr; }
+      h1 { font-size: clamp(2.1rem, 12vw, 3.4rem); }
+    }
   </style>
 </head>
-<body data-theme="dark">
-  <div class="site">
+<body>
+  <div class="wrap">
     <header>
-      <div class="brand">
-        <div class="logo">YN</div>
-        <div>
-          <div style="font-weight:700">Ritirupa Dey</div>
-          <div class="muted" style="font-size:12px">PhD Student • AI/ML • Robotics</div>
+      <a class="brand" href="#top" aria-label="Home">
+        <div class="brand-mark">RD</div>
+        <div class="brand-text">
+          <strong>Ritirupa Dey</strong>
+          <span>PhD Student in Computer Science</span>
         </div>
-      </div>
+      </a>
 
-      <div style="display:flex;align-items:center;gap:12px">
-        <nav aria-label="main navigation">
-          <a href="#about">About</a>
-          <a href="#projects">Projects</a>
-          <a href="#contact">Contact</a>
-        </nav>
-
-        <button class="theme-btn" id="themeToggle" title="Toggle light/dark">Toggle theme</button>
-      </div>
+      <nav aria-label="Main navigation">
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#contact">Contact</a>
+      </nav>
     </header>
 
-    <main>
-      <section class="hero card fade-up" aria-labelledby="intro">
-        <h1 id="intro" class="title">Hi — I'm <span style="background:linear-gradient(90deg,var(--accent),#ef4444);-webkit-background-clip:text;background-clip:text;color:transparent;">Ritirupa Dey</span>.</h1>
-        <p class="subtitle">I am a 2nd year PhD student in Computer Science at the University of South Carolina, working in AI, Machine Learning, and Robotics.</p>
-        <div style="display:flex;gap:12px;margin-top:12px;">
-          <a class="cta" href="#projects">See my work →</a>
-          <a class="chip" href="#contact">Contact</a>
+    <main id="top">
+      <section class="hero">
+        <div class="panel hero-copy">
+          <div class="eyebrow"><span class="eyebrow-dot"></span> Robotics • AI • Machine Learning</div>
+          <h1>
+            Building <span class="grad">safe and intelligent</span>
+            systems for robots and humans.
+          </h1>
+          <p>
+            I am a 2nd year PhD student in Computer Science at the University of South Carolina.
+            My work focuses on robotics, machine learning, reinforcement learning, and human-in-the-loop cyber-physical systems.
+          </p>
+
+          <div class="actions">
+            <a class="btn btn-primary" href="#research">View research interests</a>
+            <a class="btn btn-secondary" href="ritirupa_dey_cv.pdf" download>Download CV</a>
+          </div>
         </div>
-      </section>
 
-      <div class="grid-2">
-        <section class="card" id="about">
-          <h3>About me</h3>
-          <p class="muted">I am a 2nd year PhD student in Computer Science at the University of South Carolina. My research interests span Artificial Intelligence, Machine Learning, Robotics, and Human-in-the-Loop Cyber-Physical Systems. I have prior industry experience as a Data Scientist and a strong background in ML, reinforcement learning, and robotics.</p>
-
-          <div style="margin-top:12px">
-            <h4 style="margin:6px 0">Skills</h4>
-            <div class="stack">
-              <span class="chip">Python</span>
-              <span class="chip">Machine Learning</span>
-              <span class="chip">Deep Learning</span>
-              <span class="chip">Robotics</span>
-              <span class="chip">Reinforcement Learning</span>
-              <span class="chip">Computer Vision</span>
-              <span class="chip">Natural Language Processing</span>
+        <div class="panel hero-visual">
+          <div class="photo-card" aria-label="Photo of Ritirupa Dey">
+            <div class="photo-overlay">
+              <strong>Your photo goes here</strong>
+              <span>Replace <code>assets/photo.jpg</code> with your own image.</span>
             </div>
           </div>
 
-          <div style="margin-top:14px">
-            <a class="chip" href="#" download>Download resume</a>
-            <a class="chip" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-            <a class="chip" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+          <div class="stats">
+            <div class="stat">
+              <strong>Robotics</strong>
+              <span>Control, planning, and safety</span>
+            </div>
+            <div class="stat">
+              <strong>AI / ML</strong>
+              <span>Learning-based decision making</span>
+            </div>
+            <div class="stat">
+              <strong>HITL</strong>
+              <span>Human-in-the-loop systems</span>
+            </div>
           </div>
-        </section>
+        </div>
+      </section>
 
-        <aside class="card" aria-label="side">
-          <h4 style="margin:0 0 8px 0">Quick info</h4>
-          <div class="muted" style="font-size:14px">Location: <strong style="color:var(--accent)">Columbia, South Carolina, USA</strong></div>
-          <div style="margin-top:10px">
-            <h5 style="margin:6px 0">Currently</h5>
-            <div class="muted">PhD researcher focusing on AI, ML, and Robotics.</div>
+      <section class="grid">
+        <article class="panel card" id="about">
+          <div class="section-title">
+            <h2>About me</h2>
+            <span>Brief introduction</span>
+          </div>
+          <p>
+            I am a PhD student working at the intersection of robotics and intelligent systems.
+            My research combines machine learning, control, and planning to make robotic systems safer,
+            more adaptive, and more useful in real-world settings.
+          </p>
+          <p>
+            I enjoy working on methods that support collaboration between humans and robots,
+            especially when reliability, safety, and interpretability matter.
+          </p>
+
+          <div class="chips" aria-label="Skills">
+            <span class="chip">Python</span>
+            <span class="chip">Robotics</span>
+            <span class="chip">Machine Learning</span>
+            <span class="chip">Reinforcement Learning</span>
+            <span class="chip">Computer Vision</span>
+            <span class="chip">NLP</span>
+          </div>
+        </article>
+
+        <aside class="panel card" id="research">
+          <div class="section-title">
+            <h2>Research interests</h2>
+            <span>What I work on</span>
+          </div>
+
+          <div class="list">
+            <div class="item">
+              <strong>Robotics and Control</strong>
+              <span>Safe adaptive control, robot manipulators, and motion planning.</span>
+            </div>
+            <div class="item">
+              <strong>Human-in-the-Loop Systems</strong>
+              <span>Methods that combine human guidance with autonomous decision making.</span>
+            </div>
+            <div class="item">
+              <strong>Machine Learning for Robotics</strong>
+              <span>Learning-based approaches for prediction, planning, and robust behavior.</span>
+            </div>
           </div>
         </aside>
-      </div>
-
-      <section id="projects" style="margin-top:18px">
-        <h3>Selected projects</h3>
-        <div class="projects">
-          <article class="project card">
-            <h4>Safe Human-in-the-Loop Robotic Control
-            </h4>
-            <p class="muted">Research on safety-aware neural network–based controllers for robotic manipulators with human intent prediction and formal stability guarantees. Published in IEEE Transactions.</p></p>
-          </article>
-
-          <article class="project card">
-            <h4>Multi-Agent Path Finding (MAPF)
-            </h4>
-            <p class="muted">Developed reinforcement learning–based solutions for multi-agent path finding using recurrent networks and actor-critic methods, reducing inter-agent communication overhead.</p></p>
-          </article>
-
-          <article class="project card">
-            <h4>Adversarial Attacks on Large Language Models
-            </h4>
-            <p class="muted">Designed a taxonomy of white-box and black-box attacks on LLMs and implemented RLHF-based defenses using Direct Preference Optimization.</p></p>
-          </article>
-
-          <article class="project card">
-            <h4>Visual Grounding for Text Generation
-            </h4>
-            <p class="muted">Improved transformer-based text generation by incorporating visual grounding, achieving a 23% performance gain over text-only baselines.</p></p>
-          </article>
-        </div>
-    </section>
-
-      <section id="publications" class="card" style="margin-top:18px">
-        <h3>Publications</h3>
-        <p class="muted">Selected peer-reviewed and accepted papers from my research work.</p>
-        <ol class="muted" style="padding-left:18px">
-          <li><strong>R. Dey, A. Sahoo and V. Narayanan</strong>, “Safe Data-enabled Control of Human-in-the-Loop Robotic Manipulator Systems”, <em>IEEE Transactions on Industrial Informatics</em> (accepted).</li>
-          <li><strong>B. Muppasani, R. Dey, B. Srivastava, V. Narayanan</strong>, “OMEGA*: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding”, <em>Proceedings of the AAAI Conference on Artificial Intelligence</em> (accepted, 2026).</li>
-          <li><strong>R. Dey, A. Sahoo and V. Narayanan</strong>, “State-Constrained Online Adaptive Control for Robotic Manipulators”, <em>IEEE Control System Letters</em> (accepted).</li>
-          <li><strong>R. Dey, A. Sahoo and V. Narayanan</strong>, “Safe Adaptive Output Tracking Controller for Robotic Manipulators”, (under review, ACC 2026).</li>
-          <li><strong>B. Muppasani, R. Dey, B. Srivastava, V. Narayanan</strong>, “maPO: An Ontology for Multi-Agent Path Finding and Its Usage for Explaining Planner Behaviour”, (under review, AAMAS 2026).</li>
-        </ol>
-
-        <div style="margin-top:12px">
-          <a class="cta" href="ritirupa_dey_cv.pdf" download>Download CV (PDF)</a>
-          <a class="chip" href="#contact">Contact</a>
-        </div>
       </section>
 
-      <section id="contact" class="card" style="margin-top:18px" class="card" style="margin-top:18px">
-        <h3>Contact</h3>
-        <p class="muted">Want to work together or say hi? Send a message — I'll reply.</p>
-
-        <!-- Simple mailto form fallback. Replace with server endpoint or Netlify Forms if you deploy. -->
-        <form action="mailto:your@email.com" method="post" enctype="text/plain" class="form-row">
-          <input type="text" name="name" placeholder="Your name" required />
-          <input type="email" name="email" placeholder="Your email" required />
-          <textarea name="message" placeholder="Your message" rows="4" required></textarea>
-          <div style="display:flex;gap:8px">
-            <button type="submit">Send</button>
-            <a class="chip" href="mailto:your@email.com">Or email me</a>
-          </div>
-        </form>
+      <section class="panel card" style="margin-top:24px;">
+        <div class="section-title">
+          <h2>Contact</h2>
+          <span>Keep it simple and clean</span>
+        </div>
+        <p>
+          You can add your email, GitHub, Google Scholar, LinkedIn, and any lab or department links here.
+        </p>
+        <div class="chips">
+          <a class="chip" href="mailto:your@email.com">Email me</a>
+          <a class="chip" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
+          <a class="chip" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        </div>
       </section>
-
     </main>
 
-    <footer>
-      <div class="muted">© <span id="year"></span> Ritirupa Dey — Built with ❤️ • <a href="#projects">Work</a> • <a href="#contact">Contact</a></div>
+    <footer class="footer">
+      <div>© <span id="year"></span> Ritirupa Dey</div>
+      <div>Designed for GitHub Pages</div>
     </footer>
   </div>
 
   <script>
-    // small JS: theme toggle, set year, enable smooth scroll
-    const root = document.documentElement;
-    const btn = document.getElementById('themeToggle');
-    const yearEl = document.getElementById('year');
-    yearEl.textContent = new Date().getFullYear();
-
-    function setTheme(t){ document.body.setAttribute('data-theme', t); localStorage.setItem('site-theme', t); }
-    btn.addEventListener('click', ()=>{
-      const current = document.body.getAttribute('data-theme') === 'dark' ? 'dark' : 'light';
-      setTheme(current === 'dark' ? 'light' : 'dark');
-    });
-    // restore
-    const stored = localStorage.getItem('site-theme');
-    if(stored) setTheme(stored);
-
-    // smooth scrolling for in-page links
-    document.querySelectorAll('a[href^="#"]').forEach(a=>{
-      a.addEventListener('click', e=>{
-        const href = a.getAttribute('href');
-        if(href === '#') return;
-        const el = document.querySelector(href);
-        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth', block:'start'}); }
-      });
-    });
+    document.getElementById('year').textContent = new Date().getFullYear();
   </script>
-
-  <!--
-    How to use this single-file starter:
-    1) Replace "Ritirupa Dey", logo letters, and copy with your own content.
-    2) Replace social links and resume download link.
-    3) For hosting: push this file to GitHub and deploy with GitHub Pages, Netlify, or Vercel.
-    4) To add images, create an /assets folder and reference them with <img> tags.
-    5) If you'd like a React / Next.js or Tailwind variant, tell me and I will generate one.
-  -->
 </body>
 </html>
