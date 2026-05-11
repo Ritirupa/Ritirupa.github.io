@@ -30,6 +30,7 @@
       background: linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
       position: relative;
       min-height: 100vh;
+      overflow-x: hidden;
     }
 
     a { color: var(--accent); text-decoration: none; }
@@ -38,12 +39,11 @@
     /* Robotics-style animated background */
     #robotics-bg {
       position: fixed;
-      top: 0;
-      left: 0;
+      inset: 0;
       width: 100%;
       height: 100%;
       z-index: 0;
-      opacity: 0.18;
+      opacity: 0.22;
       pointer-events: none;
     }
 
@@ -64,19 +64,20 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      gap: 30px;
+      gap: 34px;
       flex-wrap: wrap;
       text-align: left;
     }
 
     .profile-pic {
-      width: 150px;
-      height: 150px;
+      width: 190px;
+      height: 190px;
       object-fit: cover;
       border-radius: 50%;
-      border: 4px solid rgba(255, 255, 255, 0.85);
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      border: 5px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.32);
       background: rgba(255,255,255,0.08);
+      flex: 0 0 auto;
     }
 
     .hero-text {
@@ -160,27 +161,6 @@
       font-size: 1.03rem;
     }
 
-    .pub-meta {
-      display: flex;
-      gap: 10px;
-      flex-wrap: wrap;
-      margin: 10px 0 0;
-      color: var(--muted);
-      font-size: 0.95rem;
-    }
-
-    .tag {
-      display: inline-flex;
-      align-items: center;
-      border: 1px solid var(--border);
-      background: #f8fafc;
-      border-radius: 999px;
-      padding: 4px 10px;
-      font-size: 0.82rem;
-      font-weight: 700;
-      color: var(--brand);
-    }
-
     .pub-list {
       display: grid;
       gap: 14px;
@@ -255,7 +235,7 @@
     @media (max-width: 640px) {
       .hero { padding-top: 58px; }
       .hero-inner { text-align: center; }
-      .profile-pic { width: 128px; height: 128px; }
+      .profile-pic { width: 150px; height: 150px; }
       .nav-inner { justify-content: flex-start; }
       main { padding-top: 42px; }
       .card, .pub, .contact-item { padding: 18px; }
@@ -300,11 +280,6 @@
 
       <section id="publications">
         <h2>Featured Publications</h2>
-        <div class="pub-meta">
-          <span class="tag">First-author papers first</span>
-          <span class="tag">Links included</span>
-        </div>
-
         <div class="pub-list">
           <article class="pub">
             <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
@@ -395,49 +370,84 @@
       canvas.width = width;
       canvas.height = height;
 
-      const count = Math.max(50, Math.floor((width * height) / 25000));
+      const count = Math.max(48, Math.floor((width * height) / 26000));
       nodes = [];
       for (let i = 0; i < count; i++) {
         nodes.push({
           x: Math.random() * width,
           y: Math.random() * height,
-          vx: (Math.random() - 0.5) * 0.4,
-          vy: (Math.random() - 0.5) * 0.4
+          vx: (Math.random() - 0.5) * 0.45,
+          vy: (Math.random() - 0.5) * 0.45,
+          r: 1.4 + Math.random() * 1.4
         });
+      }
+    }
+
+    function drawGrid() {
+      const spacing = width < 700 ? 56 : 72;
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.05)";
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x < width; x += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < height; y += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // subtle diagonal "motion" lines for a robotics/planning feel
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.03)";
+      ctx.lineWidth = 1;
+      for (let i = -height; i < width; i += spacing * 2) {
+        ctx.beginPath();
+        ctx.moveTo(i, 0);
+        ctx.lineTo(i + height * 0.7, height);
+        ctx.stroke();
       }
     }
 
     function draw() {
       ctx.clearRect(0, 0, width, height);
 
+      drawGrid();
+
+      // connections
       for (let i = 0; i < nodes.length; i++) {
         for (let j = i + 1; j < nodes.length; j++) {
           const dx = nodes[i].x - nodes[j].x;
           const dy = nodes[i].y - nodes[j].y;
           const dist = Math.sqrt(dx * dx + dy * dy);
 
-          if (dist < 140) {
+          if (dist < 145) {
             ctx.beginPath();
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
-            ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
+            ctx.strokeStyle = "rgba(37, 99, 235, " + (0.14 * (1 - dist / 145)) + ")";
             ctx.lineWidth = 1;
             ctx.stroke();
           }
         }
       }
 
+      // nodes + motion
       for (const n of nodes) {
         ctx.beginPath();
-        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(37, 99, 235, 0.8)";
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(37, 99, 235, 0.82)";
         ctx.fill();
 
         n.x += n.vx;
         n.y += n.vy;
 
-        if (n.x < 0 || n.x > width) n.vx *= -1;
-        if (n.y < 0 || n.y > height) n.vy *= -1;
+        if (n.x < -10 || n.x > width + 10) n.vx *= -1;
+        if (n.y < -10 || n.y > height + 10) n.vy *= -1;
       }
 
       requestAnimationFrame(draw);
