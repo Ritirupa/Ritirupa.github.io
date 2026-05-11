@@ -27,7 +27,10 @@
       font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       line-height: 1.7;
       color: var(--text);
-      background: linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+      background:
+        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%),
+        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.06), transparent 28%),
+        linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
       position: relative;
       min-height: 100vh;
       overflow-x: hidden;
@@ -35,6 +38,460 @@
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
+
+    /* Motion-planning / trajectory-style robotics background */
+    #robotics-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.36;
+      pointer-events: none;
+      mix-blend-mode: multiply;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%, #020617 100%);
+      color: white;
+      padding: 72px 20px 54px;
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 34px;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .profile-pic {
+      width: 190px;
+      height: 190px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 5px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.32);
+      background: rgba(255,255,255,0.08);
+      flex: 0 0 auto;
+    }
+
+    .hero-text {
+      max-width: 700px;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      font-size: 1.06rem;
+      color: rgba(255,255,255,0.86);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,231,235,0.85);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-inner a {
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 20px 28px;
+    }
+
+    section {
+      margin-bottom: 42px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 18px;
+      color: var(--brand);
+      letter-spacing: -0.02em;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .about p {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .pub {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .pub h3 {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      line-height: 1.35;
+      color: var(--brand);
+    }
+
+    .pub p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .links a {
+      font-weight: 600;
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-item .label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 18px 38px;
+      font-size: 0.92rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 640px) {
+      .hero { padding-top: 58px; }
+      .hero-inner { text-align: center; }
+      .profile-pic { width: 150px; height: 150px; }
+      .nav-inner { justify-content: flex-start; }
+      main { padding-top: 42px; }
+      .card, .pub, .contact-item { padding: 18px; }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="robotics-bg"></canvas>
+
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <img src="assets/photo.jpg" alt="Ritirupa Dey" class="profile-pic" />
+        <div class="hero-text">
+          <div class="eyebrow">AI • Robotics • Control</div>
+          <h1>Ritirupa Dey</h1>
+          <p class="subtitle">
+            PhD Candidate in Computer Science
+          </p>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="nav-inner">
+        <a href="#about">About</a>
+        <a href="#publications">Featured Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="about" class="about">
+        <h2>About</h2>
+        <div class="card">
+          <p>
+            Hi! I am a 2nd year PhD candidate in Computer Science at the University of South Carolina. I am part of the AI Institute and the CSCE Department, working with Dr. Vignesh Narayanan since Fall 2024. Before that, I completed my Master's in Data Science from Chennai Mathematical Institute, India in 2023 and my Bachelor's in Computer Science from the University of Calcutta in 2021. My research interests are broadly centered on applications of AI in robotics and cyber-physical systems. Specifically, I work on developing adaptive controllers with a focus on safety, optimality, and resource efficiency using machine learning and reinforcement learning techniques. I am also interested in integrating planning and control, with recent work exploring information-efficient multi-agent path finding and hybrid frameworks that combine decentralized planning with lightweight centralized coordination to improve scalability, safety, and execution quality in robotic systems.
+          </p>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Featured Publications</h2>
+        <div class="pub-list">
+          <article class="pub">
+            <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Transactions on Industrial Informatics, 2026.</p>
+            <div class="links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/11275949" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/tii/DeySN26a" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>State-Constrained Online Adaptive Control for Robotic Manipulators</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Control Systems Letters, 2025.</p>
+            <div class="links">
+              <a href="https://doi.org/10.1109/LCSYS.2025.3645198" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/csysl/DeySN25" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. AAAI 2026.</p>
+            <div class="links">
+              <a href="https://ojs.aaai.org/index.php/AAAI/article/view/42367" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/conf/aaai/MuppasaniDSN26" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Risha Patel, Biplav Srivastava, Vignesh Narayanan. arXiv, 2026.</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://doi.org/10.48550/arXiv.2510.09469" target="_blank" rel="noopener noreferrer">DOI</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. CoRR / arXiv, 2025.</p>
+            <div class="links">
+              <a href="https://dblp.org/rec/journals/corr/abs-2510-09469" target="_blank" rel="noopener noreferrer">DBLP</a>
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="label">Email</span>
+            <a href="mailto:deyr@email.sc.edu">deyr@email.sc.edu</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">Google Scholar</span>
+            <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">GitHub</span>
+            <a href="https://github.com/Ritirupa" target="_blank" rel="noopener noreferrer">github.com/Ritirupa</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">LinkedIn</span>
+            <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Ritirupa Dey
+    </footer>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("robotics-bg");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let trajectories = [];
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      const count = Math.max(8, Math.floor((width * height) / 120000));
+      trajectories = [];
+
+      for (let i = 0; i < count; i++) {
+        const startX = Math.random() * width * 0.8;
+        const startY = Math.random() * height;
+        const endX = startX + (Math.random() * 260 + 140) * (Math.random() > 0.5 ? 1 : -1);
+        const endY = startY + (Math.random() * 180 - 90);
+        const cp1X = startX + (Math.random() * 180 + 60);
+        const cp1Y = startY + (Math.random() * 140 - 70);
+        const cp2X = endX - (Math.random() * 180 + 60);
+        const cp2Y = endY + (Math.random() * 140 - 70);
+
+        trajectories.push({
+          start: { x: startX, y: startY },
+          cp1: { x: cp1X, y: cp1Y },
+          cp2: { x: cp2X, y: cp2Y },
+          end: { x: endX, y: endY },
+          t: Math.random(),
+          speed: 0.0015 + Math.random() * 0.0015,
+          dots: 2 + Math.floor(Math.random() * 3)
+        });
+      }
+    }
+
+    function cubicPoint(p0, p1, p2, p3, t) {
+      const mt = 1 - t;
+      const mt2 = mt * mt;
+      const t2 = t * t;
+      return {
+        x: mt2 * mt * p0.x + 3 * mt2 * t * p1.x + 3 * mt * t2 * p2.x + t2 * t * p3.x,
+        y: mt2 * mt * p0.y + 3 * mt2 * t * p1.y + 3 * mt * t2 * p2.y + t2 * t * p3.y
+      };
+    }
+
+    function drawGrid() {
+      const spacing = width < 700 ? 54 : 76;
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.06)";
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x < width; x += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < height; y += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+    }
+
+    function drawTrajectory(tr) {
+      const p0 = tr.start;
+      const p1 = tr.cp1;
+      const p2 = tr.cp2;
+      const p3 = tr.end;
+
+      // path
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // planning nodes / waypoints
+      [p0, p1, p2, p3].forEach((p, idx) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, idx === 0 || idx === 3 ? 3.2 : 2.4, 0, Math.PI * 2);
+        ctx.fillStyle = idx === 0 || idx === 3 ? "rgba(37, 99, 235, 0.9)" : "rgba(37, 99, 235, 0.55)";
+        ctx.fill();
+      });
+
+      // moving particle(s) along the trajectory
+      for (let i = 0; i < tr.dots; i++) {
+        const tt = (tr.t + i * 0.12) % 1;
+        const pos = cubicPoint(p0, p1, p2, p3, tt);
+        ctx.beginPath();
+        ctx.arc(pos.x, pos.y, 2.2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(14, 165, 233, 0.92)";
+        ctx.fill();
+      }
+
+      tr.t += tr.speed;
+      if (tr.t > 1) tr.t -= 1;
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      drawGrid();
+
+      // faint diagonal flow lines for a planning/robotics feel
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.03)";
+      ctx.lineWidth = 1;
+      const spacing = width < 700 ? 160 : 220;
+      for (let x = -height; x < width + height; x += spacing) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x + height * 0.72, height);
+        ctx.stroke();
+      }
+
+      trajectories.forEach(drawTrajectory);
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
+</body>
+</html>    a:hover { text-decoration: underline; }
 
     /* Robotics-style animated background */
     #robotics-bg {
