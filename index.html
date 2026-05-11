@@ -28,21 +28,59 @@
       line-height: 1.7;
       color: var(--text);
       background: linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
+      position: relative;
+      min-height: 100vh;
     }
 
     a { color: var(--accent); text-decoration: none; }
     a:hover { text-decoration: underline; }
 
+    /* Robotics-style animated background */
+    #robotics-bg {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      opacity: 0.18;
+      pointer-events: none;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
     .hero {
       background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%, #020617 100%);
       color: white;
-      padding: 78px 20px 56px;
-      text-align: center;
+      padding: 72px 20px 54px;
     }
 
     .hero-inner {
       max-width: var(--max);
       margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 30px;
+      flex-wrap: wrap;
+      text-align: left;
+    }
+
+    .profile-pic {
+      width: 150px;
+      height: 150px;
+      object-fit: cover;
+      border-radius: 50%;
+      border: 4px solid rgba(255, 255, 255, 0.85);
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.28);
+      background: rgba(255,255,255,0.08);
+    }
+
+    .hero-text {
+      max-width: 700px;
     }
 
     .eyebrow {
@@ -51,21 +89,20 @@
       letter-spacing: 0.12em;
       text-transform: uppercase;
       color: rgba(255,255,255,0.75);
-      margin-bottom: 14px;
+      margin-bottom: 12px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.3rem, 5vw, 4rem);
+      font-size: clamp(2.2rem, 5vw, 4rem);
       line-height: 1.08;
       letter-spacing: -0.04em;
     }
 
     .subtitle {
-      margin: 18px auto 0;
-      max-width: 760px;
-      font-size: 1.08rem;
-      color: rgba(255,255,255,0.85);
+      margin: 14px 0 0;
+      font-size: 1.06rem;
+      color: rgba(255,255,255,0.86);
     }
 
     nav {
@@ -110,20 +147,17 @@
     }
 
     .card {
-      background: var(--panel);
+      background: rgba(255, 255, 255, 0.94);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
       padding: 22px;
+      backdrop-filter: blur(6px);
     }
 
     .about p {
       margin: 0;
       font-size: 1.03rem;
-    }
-
-    .about p + p {
-      margin-top: 14px;
     }
 
     .pub-meta {
@@ -150,14 +184,16 @@
     .pub-list {
       display: grid;
       gap: 14px;
+      margin-top: 16px;
     }
 
     .pub {
-      background: white;
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 18px 20px;
       box-shadow: 0 8px 20px rgba(15,23,42,0.05);
+      backdrop-filter: blur(6px);
     }
 
     .pub h3 {
@@ -190,11 +226,12 @@
     }
 
     .contact-item {
-      background: white;
+      background: rgba(255, 255, 255, 0.96);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 16px 18px;
       box-shadow: 0 8px 20px rgba(15,23,42,0.04);
+      backdrop-filter: blur(6px);
     }
 
     .contact-item .label {
@@ -211,10 +248,14 @@
       color: var(--muted);
       padding: 28px 18px 38px;
       font-size: 0.92rem;
+      position: relative;
+      z-index: 1;
     }
 
     @media (max-width: 640px) {
-      .hero { padding-top: 60px; }
+      .hero { padding-top: 58px; }
+      .hero-inner { text-align: center; }
+      .profile-pic { width: 128px; height: 128px; }
       .nav-inner { justify-content: flex-start; }
       main { padding-top: 42px; }
       .card, .pub, .contact-item { padding: 18px; }
@@ -223,114 +264,188 @@
 </head>
 
 <body>
-  <header class="hero">
-    <div class="hero-inner">
-      <div class="eyebrow">AI • Robotics • Control</div>
-      <h1>Ritirupa Dey</h1>
-      <p class="subtitle">
-        PhD Candidate in Computer Science at the University of South Carolina
-      </p>
-    </div>
-  </header>
+  <canvas id="robotics-bg"></canvas>
 
-  <nav>
-    <div class="nav-inner">
-      <a href="#about">About</a>
-      <a href="#publications">Featured Publications</a>
-      <a href="#contact">Contact</a>
-    </div>
-  </nav>
-
-  <main>
-    <section id="about" class="about">
-      <h2>About</h2>
-      <div class="card">
-        <p>
-          Hi! I am a 2nd year PhD candidate in Computer Science at the University of South Carolina. I am part of the AI Institute and the CSCE Department, working with Dr. Vignesh Narayanan since Fall 2024. Before that, I completed my Master's in Data Science from Chennai Mathematical Institute, India in 2023 and my Bachelor's in Computer Science from the University of Calcutta in 2021. My research interests are broadly centered on applications of AI in robotics and cyber-physical systems. Specifically, I work on developing adaptive controllers with a focus on safety, optimality, and resource efficiency using machine learning and reinforcement learning techniques. I am also interested in integrating planning and control, with recent work exploring information-efficient multi-agent path finding and hybrid frameworks that combine decentralized planning with lightweight centralized coordination to improve scalability, safety, and execution quality in robotic systems.
-        </p>
-      </div>
-    </section>
-
-    <section id="publications">
-      <h2>Featured Publications</h2>
-      <div class="pub-meta">
-        <span class="tag">First-author papers first</span>
-        <span class="tag">Links included</span>
-      </div>
-
-      <div class="pub-list" style="margin-top: 16px;">
-        <article class="pub">
-          <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
-          <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Transactions on Industrial Informatics, 2026.</p>
-          <div class="links">
-            <a href="https://doi.org/10.1109/TII.2026.3665290" target="_blank" rel="noopener noreferrer">Paper</a>
-            <a href="https://dblp.org/rec/journals/tii/DeySN26a" target="_blank" rel="noopener noreferrer">DBLP</a>
-          </div>
-        </article>
-
-        <article class="pub">
-          <h3>State-Constrained Online Adaptive Control for Robotic Manipulators</h3>
-          <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Control Systems Letters, 2025.</p>
-          <div class="links">
-            <a href="https://doi.org/10.1109/LCSYS.2025.3645198" target="_blank" rel="noopener noreferrer">Paper</a>
-            <a href="https://dblp.org/rec/journals/csysl/DeySN25" target="_blank" rel="noopener noreferrer">DBLP</a>
-          </div>
-        </article>
-
-        <article class="pub">
-          <h3>OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding</h3>
-          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. AAAI 2026.</p>
-          <div class="links">
-            <a href="https://ojs.aaai.org/index.php/AAAI/article/view/42367" target="_blank" rel="noopener noreferrer">Paper</a>
-            <a href="https://dblp.org/rec/conf/aaai/MuppasaniDSN26" target="_blank" rel="noopener noreferrer">DBLP</a>
-          </div>
-        </article>
-
-        <article class="pub">
-          <h3>Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</h3>
-          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Risha Patel, Biplav Srivastava, Vignesh Narayanan. arXiv, 2026.</p>
-          <div class="links">
-            <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">Paper</a>
-            <a href="https://doi.org/10.48550/arXiv.2510.09469" target="_blank" rel="noopener noreferrer">DOI</a>
-          </div>
-        </article>
-
-        <article class="pub">
-          <h3>Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy</h3>
-          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. CoRR / arXiv, 2025.</p>
-          <div class="links">
-            <a href="https://dblp.org/rec/journals/corr/abs-2510-09469" target="_blank" rel="noopener noreferrer">DBLP</a>
-            <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">arXiv</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <section id="contact">
-      <h2>Contact</h2>
-      <div class="contact-grid">
-        <div class="contact-item">
-          <span class="label">Email</span>
-          <a href="mailto:deyr@email.sc.edu">deyr@email.sc.edu</a>
-        </div>
-        <div class="contact-item">
-          <span class="label">Google Scholar</span>
-          <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
-        </div>
-        <div class="contact-item">
-          <span class="label">GitHub</span>
-          <a href="https://github.com/Ritirupa" target="_blank" rel="noopener noreferrer">github.com/Ritirupa</a>
-        </div>
-        <div class="contact-item">
-          <span class="label">LinkedIn</span>
-          <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <img src="images/profile.jpg" alt="Ritirupa Dey" class="profile-pic" />
+        <div class="hero-text">
+          <div class="eyebrow">AI • Robotics • Control</div>
+          <h1>Ritirupa Dey</h1>
+          <p class="subtitle">
+            PhD Candidate in Computer Science
+          </p>
         </div>
       </div>
-    </section>
-  </main>
+    </header>
 
-  <footer>
-    © 2026 Ritirupa Dey
-  </footer>
+    <nav>
+      <div class="nav-inner">
+        <a href="#about">About</a>
+        <a href="#publications">Featured Publications</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="about" class="about">
+        <h2>About</h2>
+        <div class="card">
+          <p>
+            Hi! I am a 2nd year PhD candidate in Computer Science at the University of South Carolina. I am part of the AI Institute and the CSCE Department, working with Dr. Vignesh Narayanan since Fall 2024. Before that, I completed my Master's in Data Science from Chennai Mathematical Institute, India in 2023 and my Bachelor's in Computer Science from the University of Calcutta in 2021. My research interests are broadly centered on applications of AI in robotics and cyber-physical systems. Specifically, I work on developing adaptive controllers with a focus on safety, optimality, and resource efficiency using machine learning and reinforcement learning techniques. I am also interested in integrating planning and control, with recent work exploring information-efficient multi-agent path finding and hybrid frameworks that combine decentralized planning with lightweight centralized coordination to improve scalability, safety, and execution quality in robotic systems.
+          </p>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Featured Publications</h2>
+        <div class="pub-meta">
+          <span class="tag">First-author papers first</span>
+          <span class="tag">Links included</span>
+        </div>
+
+        <div class="pub-list">
+          <article class="pub">
+            <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Transactions on Industrial Informatics, 2026.</p>
+            <div class="links">
+              <a href="https://doi.org/10.1109/TII.2026.3665290" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/tii/DeySN26a" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>State-Constrained Online Adaptive Control for Robotic Manipulators</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Control Systems Letters, 2025.</p>
+            <div class="links">
+              <a href="https://doi.org/10.1109/LCSYS.2025.3645198" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/csysl/DeySN25" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. AAAI 2026.</p>
+            <div class="links">
+              <a href="https://ojs.aaai.org/index.php/AAAI/article/view/42367" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/conf/aaai/MuppasaniDSN26" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Risha Patel, Biplav Srivastava, Vignesh Narayanan. arXiv, 2026.</p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://doi.org/10.48550/arXiv.2510.09469" target="_blank" rel="noopener noreferrer">DOI</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. CoRR / arXiv, 2025.</p>
+            <div class="links">
+              <a href="https://dblp.org/rec/journals/corr/abs-2510-09469" target="_blank" rel="noopener noreferrer">DBLP</a>
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="label">Email</span>
+            <a href="mailto:deyr@email.sc.edu">deyr@email.sc.edu</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">Google Scholar</span>
+            <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">GitHub</span>
+            <a href="https://github.com/Ritirupa" target="_blank" rel="noopener noreferrer">github.com/Ritirupa</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">LinkedIn</span>
+            <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Ritirupa Dey
+    </footer>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("robotics-bg");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let nodes = [];
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+
+      const count = Math.max(50, Math.floor((width * height) / 25000));
+      nodes = [];
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: Math.random() * width,
+          y: Math.random() * height,
+          vx: (Math.random() - 0.5) * 0.4,
+          vy: (Math.random() - 0.5) * 0.4
+        });
+      }
+    }
+
+    function draw() {
+      ctx.clearRect(0, 0, width, height);
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const dx = nodes[i].x - nodes[j].x;
+          const dy = nodes[i].y - nodes[j].y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 140) {
+            ctx.beginPath();
+            ctx.moveTo(nodes[i].x, nodes[i].y);
+            ctx.lineTo(nodes[j].x, nodes[j].y);
+            ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+
+      for (const n of nodes) {
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, 2, 0, Math.PI * 2);
+        ctx.fillStyle = "rgba(37, 99, 235, 0.8)";
+        ctx.fill();
+
+        n.x += n.vx;
+        n.y += n.vy;
+
+        if (n.x < 0 || n.x > width) n.vx *= -1;
+        if (n.y < 0 || n.y > height) n.vy *= -1;
+      }
+
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
 </body>
 </html>
