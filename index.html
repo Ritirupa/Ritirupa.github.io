@@ -1,498 +1,336 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Ritirupa Dey — PhD Student in Computer Science</title>
-  <meta name="description" content="Personal website for Ritirupa Dey — PhD student working in robotics, AI, and machine learning." />
-  <meta name="theme-color" content="#0f172a" />
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ritirupa Dey | PhD Candidate</title>
   <style>
     :root {
-      --bg: #07111f;
-      --bg-2: #0b1730;
-      --card: rgba(8, 15, 30, 0.72);
-      --card-border: rgba(255, 255, 255, 0.10);
-      --text: #e5eefb;
-      --muted: #aab7cf;
-      --accent: #7c3aed;
-      --accent-2: #22d3ee;
-      --shadow: 0 24px 80px rgba(0, 0, 0, 0.45);
-      --radius: 24px;
-      --ff: Inter, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Arial, sans-serif;
+      --bg: #fafafa;
+      --panel: #ffffff;
+      --text: #1f2937;
+      --muted: #6b7280;
+      --brand: #0f172a;
+      --accent: #2563eb;
+      --border: #e5e7eb;
+      --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      --radius: 18px;
+      --max: 980px;
     }
 
     * { box-sizing: border-box; }
+
     html { scroll-behavior: smooth; }
+
     body {
       margin: 0;
-      font-family: var(--ff);
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      line-height: 1.7;
       color: var(--text);
-      background:
-        radial-gradient(circle at top left, rgba(124, 58, 237, 0.28), transparent 28%),
-        radial-gradient(circle at 85% 10%, rgba(34, 211, 238, 0.18), transparent 24%),
-        radial-gradient(circle at 50% 100%, rgba(255, 255, 255, 0.06), transparent 30%),
-        linear-gradient(180deg, var(--bg), var(--bg-2));
-      min-height: 100vh;
-      line-height: 1.55;
-      overflow-x: hidden;
+      background: linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
     }
 
-    /* Robotics-style overlay background */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      opacity: 0.18;
-      background-image:
-        linear-gradient(rgba(255,255,255,0.06) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,0.06) 1px, transparent 1px),
-        radial-gradient(circle at 20px 20px, rgba(34, 211, 238, 0.55) 1px, transparent 1.5px);
-      background-size: 42px 42px, 42px 42px, 42px 42px;
-      mask-image: linear-gradient(180deg, rgba(0,0,0,0.55), transparent 92%);
-    }
-
-    .wrap {
-      width: min(1120px, calc(100% - 32px));
-      margin: 0 auto;
-      position: relative;
-      z-index: 1;
-    }
-
-    header {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 20px;
-      padding: 22px 0;
-    }
-
-    .brand {
-      display: flex;
-      align-items: center;
-      gap: 14px;
-      text-decoration: none;
-      color: inherit;
-    }
-
-    .brand-mark {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      font-weight: 800;
-      color: white;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 10px 30px rgba(124, 58, 237, 0.35);
-    }
-
-    .brand-text strong { display: block; font-size: 1rem; }
-    .brand-text span { display: block; color: var(--muted); font-size: 0.92rem; }
-
-    nav {
-      display: flex;
-      align-items: center;
-      gap: 22px;
-      flex-wrap: wrap;
-    }
-
-    nav a {
-      color: var(--muted);
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s ease;
-    }
-
-    nav a:hover { color: white; }
+    a { color: var(--accent); text-decoration: none; }
+    a:hover { text-decoration: underline; }
 
     .hero {
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
-      align-items: stretch;
-      margin-top: 16px;
+      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%, #020617 100%);
+      color: white;
+      padding: 78px 20px 56px;
+      text-align: center;
     }
 
-    .panel {
-      background: var(--card);
-      border: 1px solid var(--card-border);
-      border-radius: var(--radius);
-      box-shadow: var(--shadow);
-      backdrop-filter: blur(18px);
-    }
-
-    .hero-copy {
-      padding: 34px;
-      overflow: hidden;
-      position: relative;
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
     }
 
     .eyebrow {
-      display: inline-flex;
-      gap: 10px;
-      align-items: center;
-      padding: 8px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.06);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--muted);
-      font-size: 0.92rem;
-      margin-bottom: 18px;
-    }
-
-    .eyebrow-dot {
-      width: 8px;
-      height: 8px;
-      border-radius: 50%;
-      background: var(--accent-2);
-      box-shadow: 0 0 16px rgba(34, 211, 238, 0.8);
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255,255,255,0.75);
+      margin-bottom: 14px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(2.4rem, 5vw, 4.8rem);
-      line-height: 0.96;
+      font-size: clamp(2.3rem, 5vw, 4rem);
+      line-height: 1.08;
       letter-spacing: -0.04em;
     }
 
-    .grad {
-      background: linear-gradient(90deg, white, #c4b5fd 45%, #67e8f9);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
+    .subtitle {
+      margin: 18px auto 0;
+      max-width: 760px;
+      font-size: 1.08rem;
+      color: rgba(255,255,255,0.85);
     }
 
-    .hero-copy p {
-      max-width: 62ch;
-      color: var(--muted);
-      font-size: 1.05rem;
-      margin: 18px 0 0;
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255,255,255,0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229,231,235,0.85);
     }
 
-    .actions {
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
       display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin-top: 24px;
-    }
-
-    .btn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      padding: 12px 18px;
-      border-radius: 14px;
-      text-decoration: none;
-      font-weight: 700;
-      border: 1px solid rgba(255,255,255,0.10);
-      transition: 0.2s ease;
-    }
-
-    .btn-primary {
-      color: white;
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      box-shadow: 0 12px 30px rgba(124, 58, 237, 0.28);
-    }
-
-    .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,0.04);
-    }
-
-    .btn:hover { transform: translateY(-1px); }
-
-    .hero-visual {
-      padding: 18px;
-      display: flex;
-      flex-direction: column;
       gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
     }
 
-    .photo-card {
-      position: relative;
-      aspect-ratio: 0.92 / 1;
-      overflow: hidden;
-      border-radius: calc(var(--radius) - 4px);
-      border: 1px solid rgba(255,255,255,0.10);
-      background:
-        linear-gradient(180deg, rgba(0,0,0,0.02), rgba(0,0,0,0.38)),
-        url("assets/photo.jpg") center/cover no-repeat;
-      min-height: 440px;
+    .nav-inner a {
+      color: var(--brand);
+      font-weight: 600;
     }
 
-    .photo-overlay {
-      position: absolute;
-      inset: auto 0 0 0;
-      padding: 18px;
-      background: linear-gradient(180deg, transparent, rgba(5,10,20,0.92));
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 20px 28px;
     }
 
-    .photo-overlay strong {
-      display: block;
-      font-size: 1.05rem;
-      margin-bottom: 4px;
+    section {
+      margin-bottom: 42px;
     }
 
-    .photo-overlay span {
-      color: #cbd5e1;
-      font-size: 0.92rem;
-    }
-
-    .stats {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 12px;
-    }
-
-    .stat {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      text-align: center;
-    }
-
-    .stat strong {
-      display: block;
-      font-size: 1.2rem;
-      margin-bottom: 4px;
-    }
-
-    .stat span { color: var(--muted); font-size: 0.88rem; }
-
-    .grid {
-      display: grid;
-      grid-template-columns: 1.1fr 0.9fr;
-      gap: 24px;
-      margin-top: 24px;
-    }
-
-    .card {
-      padding: 26px;
-    }
-
-    .card h2, .card h3 {
-      margin: 0 0 14px;
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 18px;
+      color: var(--brand);
       letter-spacing: -0.02em;
     }
 
-    .card p { margin-top: 0; color: var(--muted); }
+    .card {
+      background: var(--panel);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+    }
 
-    .chips {
+    .about p {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .about p + p {
+      margin-top: 14px;
+    }
+
+    .pub-meta {
       display: flex;
-      flex-wrap: wrap;
       gap: 10px;
-      margin-top: 16px;
-    }
-
-    .chip {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      padding: 9px 12px;
-      border-radius: 999px;
-      background: rgba(255,255,255,0.05);
-      border: 1px solid rgba(255,255,255,0.08);
-      color: var(--text);
-      font-size: 0.92rem;
-      text-decoration: none;
-    }
-
-    .section-title {
-      display: flex;
-      align-items: baseline;
-      justify-content: space-between;
-      gap: 18px;
-      margin-bottom: 14px;
-    }
-
-    .section-title span {
+      flex-wrap: wrap;
+      margin: 10px 0 0;
       color: var(--muted);
       font-size: 0.95rem;
     }
 
-    .list {
+    .tag {
+      display: inline-flex;
+      align-items: center;
+      border: 1px solid var(--border);
+      background: #f8fafc;
+      border-radius: 999px;
+      padding: 4px 10px;
+      font-size: 0.82rem;
+      font-weight: 700;
+      color: var(--brand);
+    }
+
+    .pub-list {
       display: grid;
       gap: 14px;
-      margin-top: 16px;
     }
 
-    .item {
-      padding: 16px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.04);
-      border: 1px solid rgba(255,255,255,0.08);
+    .pub {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.05);
     }
 
-    .item strong { display: block; margin-bottom: 6px; }
-    .item span { color: var(--muted); font-size: 0.95rem; }
+    .pub h3 {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      line-height: 1.35;
+      color: var(--brand);
+    }
 
-    .footer {
-      padding: 28px 0 40px;
-      color: var(--muted);
-      font-size: 0.92rem;
+    .pub p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .links {
       display: flex;
-      justify-content: space-between;
-      gap: 16px;
+      gap: 14px;
       flex-wrap: wrap;
+      margin-top: 12px;
     }
 
-    .footer a { color: #d8dbe8; text-decoration: none; }
-    .footer a:hover { text-decoration: underline; }
+    .links a {
+      font-weight: 600;
+    }
 
-    @media (max-width: 900px) {
-      .hero, .grid { grid-template-columns: 1fr; }
-      .photo-card { min-height: 380px; }
-      header { flex-direction: column; align-items: flex-start; }
+    .contact-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .contact-item {
+      background: white;
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(15,23,42,0.04);
+    }
+
+    .contact-item .label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 18px 38px;
+      font-size: 0.92rem;
     }
 
     @media (max-width: 640px) {
-      .wrap { width: min(100% - 20px, 1120px); }
-      .hero-copy, .card { padding: 20px; }
-      nav { gap: 14px; }
-      .stats { grid-template-columns: 1fr; }
-      h1 { font-size: clamp(2.1rem, 12vw, 3.4rem); }
+      .hero { padding-top: 60px; }
+      .nav-inner { justify-content: flex-start; }
+      main { padding-top: 42px; }
+      .card, .pub, .contact-item { padding: 18px; }
     }
   </style>
 </head>
+
 <body>
-  <div class="wrap">
-    <header>
-      <a class="brand" href="#top" aria-label="Home">
-        <div class="brand-mark">RD</div>
-        <div class="brand-text">
-          <strong>Ritirupa Dey</strong>
-          <span>PhD Student in Computer Science</span>
-        </div>
-      </a>
+  <header class="hero">
+    <div class="hero-inner">
+      <div class="eyebrow">AI • Robotics • Control</div>
+      <h1>Ritirupa Dey</h1>
+      <p class="subtitle">
+        PhD Candidate in Computer Science at the University of South Carolina
+      </p>
+    </div>
+  </header>
 
-      <nav aria-label="Main navigation">
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#contact">Contact</a>
-      </nav>
-    </header>
+  <nav>
+    <div class="nav-inner">
+      <a href="#about">About</a>
+      <a href="#publications">Featured Publications</a>
+      <a href="#contact">Contact</a>
+    </div>
+  </nav>
 
-    <main id="top">
-      <section class="hero">
-        <div class="panel hero-copy">
-          <div class="eyebrow"><span class="eyebrow-dot"></span> Robotics • AI • Machine Learning</div>
-          <h1>
-            Building <span class="grad">safe and intelligent</span>
-            systems for robots and humans.
-          </h1>
-          <p>
-            I am a 2nd year PhD student in Computer Science at the University of South Carolina.
-            My work focuses on robotics, machine learning, reinforcement learning, and human-in-the-loop cyber-physical systems.
-          </p>
+  <main>
+    <section id="about" class="about">
+      <h2>About</h2>
+      <div class="card">
+        <p>
+          Hi! I am a 2nd year PhD candidate in Computer Science at the University of South Carolina. I am part of the AI Institute and the CSCE Department, working with Dr. Vignesh Narayanan since Fall 2024. Before that, I completed my Master's in Data Science from Chennai Mathematical Institute, India in 2023 and my Bachelor's in Computer Science from the University of Calcutta in 2021. My research interests are broadly centered on applications of AI in robotics and cyber-physical systems. Specifically, I work on developing adaptive controllers with a focus on safety, optimality, and resource efficiency using machine learning and reinforcement learning techniques. I am also interested in integrating planning and control, with recent work exploring information-efficient multi-agent path finding and hybrid frameworks that combine decentralized planning with lightweight centralized coordination to improve scalability, safety, and execution quality in robotic systems.
+        </p>
+      </div>
+    </section>
 
-          <div class="actions">
-            <a class="btn btn-primary" href="#research">View research interests</a>
-            <a class="btn btn-secondary" href="ritirupa_dey_cv.pdf" download>Download CV</a>
-          </div>
-        </div>
+    <section id="publications">
+      <h2>Featured Publications</h2>
+      <div class="pub-meta">
+        <span class="tag">First-author papers first</span>
+        <span class="tag">Links included</span>
+      </div>
 
-        <div class="panel hero-visual">
-          <div class="photo-card" aria-label="Photo of Ritirupa Dey">
-            <div class="photo-overlay">
-                <strong>Ritirupa Dey</strong>
-                <span>PhD Student, University of South Carolina</span>
-            </div>
-          </div>
-
-          <div class="stats">
-            <div class="stat">
-              <strong>Robotics</strong>
-              <span>Control, planning, and safety</span>
-            </div>
-            <div class="stat">
-              <strong>AI / ML</strong>
-              <span>Learning-based decision making</span>
-            </div>
-            <div class="stat">
-              <strong>HITL</strong>
-              <span>Human-in-the-loop systems</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section class="grid">
-        <article class="panel card" id="about">
-          <div class="section-title">
-            <h2>About me</h2>
-            <span>Brief introduction</span>
-          </div>
-          <p>
-            I am a PhD student working at the intersection of robotics and intelligent systems.
-            My research combines machine learning, control, and planning to make robotic systems safer,
-            more adaptive, and more useful in real-world settings.
-          </p>
-          <p>
-            I enjoy working on methods that support collaboration between humans and robots,
-            especially when reliability, safety, and interpretability matter.
-          </p>
-
-          <div class="chips" aria-label="Skills">
-            <span class="chip">Python</span>
-            <span class="chip">Robotics</span>
-            <span class="chip">Machine Learning</span>
-            <span class="chip">Reinforcement Learning</span>
-            <span class="chip">Computer Vision</span>
-            <span class="chip">NLP</span>
+      <div class="pub-list" style="margin-top: 16px;">
+        <article class="pub">
+          <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
+          <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Transactions on Industrial Informatics, 2026.</p>
+          <div class="links">
+            <a href="https://doi.org/10.1109/TII.2026.3665290" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://dblp.org/rec/journals/tii/DeySN26a" target="_blank" rel="noopener noreferrer">DBLP</a>
           </div>
         </article>
 
-        <aside class="panel card" id="research">
-          <div class="section-title">
-            <h2>Research interests</h2>
-            <span>What I work on</span>
+        <article class="pub">
+          <h3>State-Constrained Online Adaptive Control for Robotic Manipulators</h3>
+          <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Control Systems Letters, 2025.</p>
+          <div class="links">
+            <a href="https://doi.org/10.1109/LCSYS.2025.3645198" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://dblp.org/rec/journals/csysl/DeySN25" target="_blank" rel="noopener noreferrer">DBLP</a>
           </div>
+        </article>
 
-          <div class="list">
-            <div class="item">
-              <strong>Robotics and Control</strong>
-              <span>Safe adaptive control, robot manipulators, and motion planning.</span>
-            </div>
-            <div class="item">
-              <strong>Human-in-the-Loop Systems</strong>
-              <span>Methods that combine human guidance with autonomous decision making.</span>
-            </div>
-            <div class="item">
-              <strong>Machine Learning for Robotics</strong>
-              <span>Learning-based approaches for prediction, planning, and robust behavior.</span>
-            </div>
+        <article class="pub">
+          <h3>OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding</h3>
+          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. AAAI 2026.</p>
+          <div class="links">
+            <a href="https://ojs.aaai.org/index.php/AAAI/article/view/42367" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://dblp.org/rec/conf/aaai/MuppasaniDSN26" target="_blank" rel="noopener noreferrer">DBLP</a>
           </div>
-        </aside>
-      </section>
+        </article>
 
-      <section class="panel card" style="margin-top:24px;">
-        <div class="section-title">
-          <h2>Contact</h2>
-          <span>Keep it simple and clean</span>
+        <article class="pub">
+          <h3>Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</h3>
+          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Risha Patel, Biplav Srivastava, Vignesh Narayanan. arXiv, 2026.</p>
+          <div class="links">
+            <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">Paper</a>
+            <a href="https://doi.org/10.48550/arXiv.2510.09469" target="_blank" rel="noopener noreferrer">DOI</a>
+          </div>
+        </article>
+
+        <article class="pub">
+          <h3>Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy</h3>
+          <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. CoRR / arXiv, 2025.</p>
+          <div class="links">
+            <a href="https://dblp.org/rec/journals/corr/abs-2510-09469" target="_blank" rel="noopener noreferrer">DBLP</a>
+            <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">arXiv</a>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section id="contact">
+      <h2>Contact</h2>
+      <div class="contact-grid">
+        <div class="contact-item">
+          <span class="label">Email</span>
+          <a href="mailto:deyr@email.sc.edu">deyr@email.sc.edu</a>
         </div>
-        <p>
-          You can add your email, GitHub, Google Scholar, LinkedIn, and any lab or department links here.
-        </p>
-        <div class="chips">
-          <a class="chip" href="mailto:your@email.com">Email me</a>
-          <a class="chip" href="https://github.com/" target="_blank" rel="noopener">GitHub</a>
-          <a class="chip" href="https://linkedin.com/" target="_blank" rel="noopener">LinkedIn</a>
+        <div class="contact-item">
+          <span class="label">Google Scholar</span>
+          <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
         </div>
-      </section>
-    </main>
+        <div class="contact-item">
+          <span class="label">GitHub</span>
+          <a href="https://github.com/Ritirupa" target="_blank" rel="noopener noreferrer">github.com/Ritirupa</a>
+        </div>
+        <div class="contact-item">
+          <span class="label">LinkedIn</span>
+          <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
+        </div>
+      </div>
+    </section>
+  </main>
 
-    <footer class="footer">
-      <div>© <span id="year"></span> Ritirupa Dey</div>
-      <div>Designed for GitHub Pages</div>
-    </footer>
-  </div>
-
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <footer>
+    © 2026 Ritirupa Dey
+  </footer>
 </body>
 </html>
