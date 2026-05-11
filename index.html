@@ -28,12 +28,25 @@
       line-height: 1.7;
       color: var(--text);
       background:
-        linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px),
-        #fafafa;
-      background-size: 60px 60px;
+        radial-gradient(circle at 18% 20%, rgba(37, 99, 235, 0.10), transparent 22%),
+        radial-gradient(circle at 82% 28%, rgba(14, 165, 233, 0.08), transparent 18%),
+        radial-gradient(circle at 60% 82%, rgba(37, 99, 235, 0.06), transparent 24%),
+        linear-gradient(180deg, #f8fafc 0%, #fafafa 100%);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.34;
+      background-repeat: repeat;
+      background-size: 1200px 800px;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 1200 800' fill='none'%3E%3Cpath d='M-40 690 C 160 560, 300 560, 470 430 S 820 250, 1240 110' stroke='%232563eb' stroke-opacity='.14' stroke-width='2'/%3E%3Cpath d='M60 120 C 220 220, 330 270, 470 240 S 760 160, 980 280 S 1130 420, 1260 360' stroke='%230ea5e9' stroke-opacity='.10' stroke-width='2'/%3E%3Cpath d='M120 760 C 260 640, 410 610, 560 530 S 860 340, 1080 420' stroke='%232563eb' stroke-opacity='.10' stroke-width='2'/%3E%3Ccircle cx='470' cy='430' r='5' fill='%232563eb' fill-opacity='.28'/%3E%3Ccircle cx='820' cy='250' r='4' fill='%230ea5e9' fill-opacity='.30'/%3E%3Ccircle cx='980' cy='280' r='4' fill='%232563eb' fill-opacity='.22'/%3E%3Ccircle cx='560' cy='530' r='5' fill='%230ea5e9' fill-opacity='.25'/%3E%3Ccircle cx='860' cy='340' r='4' fill='%232563eb' fill-opacity='.24'/%3E%3C/svg%3E");
     }
 
     a {
