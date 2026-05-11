@@ -28,27 +28,21 @@
       line-height: 1.7;
       color: var(--text);
       background:
-        radial-gradient(circle at top left, rgba(37, 99, 235, 0.08), transparent 32%),
-        radial-gradient(circle at bottom right, rgba(14, 165, 233, 0.06), transparent 28%),
-        linear-gradient(180deg, #f8fafc 0%, var(--bg) 100%);
-      position: relative;
+        linear-gradient(rgba(37,99,235,0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(37,99,235,0.03) 1px, transparent 1px),
+        #fafafa;
+      background-size: 60px 60px;
       min-height: 100vh;
       overflow-x: hidden;
     }
 
-    a { color: var(--accent); text-decoration: none; }
-    a:hover { text-decoration: underline; }
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
 
-    /* Motion-planning / trajectory-style robotics background */
-    #robotics-bg {
-      position: fixed;
-      inset: 0;
-      width: 100%;
-      height: 100%;
-      z-index: 0;
-      opacity: 0.36;
-      pointer-events: none;
-      mix-blend-mode: multiply;
+    a:hover {
+      text-decoration: underline;
     }
 
     .page {
@@ -57,35 +51,32 @@
     }
 
     .hero {
-      background: radial-gradient(circle at top left, #1e293b 0%, #0f172a 60%, #020617 100%);
+      background: linear-gradient(135deg, #0f172a, #1e293b);
       color: white;
-      padding: 72px 20px 54px;
+      padding: 60px 20px;
     }
 
     .hero-inner {
       max-width: var(--max);
       margin: 0 auto;
-      display: flex;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
       align-items: center;
-      justify-content: center;
-      gap: 34px;
-      flex-wrap: wrap;
-      text-align: left;
     }
 
     .profile-pic {
-      width: 190px;
-      height: 190px;
+      width: 240px;
+      height: 240px;
       object-fit: cover;
-      border-radius: 50%;
-      border: 5px solid rgba(255, 255, 255, 0.88);
-      box-shadow: 0 14px 38px rgba(0, 0, 0, 0.32);
+      border-radius: 12px;
+      border: 4px solid rgba(255,255,255,0.85);
+      box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       background: rgba(255,255,255,0.08);
-      flex: 0 0 auto;
     }
 
     .hero-text {
-      max-width: 700px;
+      text-align: left;
     }
 
     .eyebrow {
@@ -152,7 +143,7 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.84);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -172,7 +163,7 @@
     }
 
     .pub {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 18px 20px;
@@ -210,7 +201,7 @@
     }
 
     .contact-item {
-      background: rgba(255, 255, 255, 0.9);
+      background: rgba(255, 255, 255, 0.92);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 16px 18px;
@@ -236,20 +227,40 @@
       z-index: 1;
     }
 
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .profile-pic {
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+    }
+
     @media (max-width: 640px) {
-      .hero { padding-top: 58px; }
-      .hero-inner { text-align: center; }
-      .profile-pic { width: 150px; height: 150px; }
-      .nav-inner { justify-content: flex-start; }
-      main { padding-top: 42px; }
-      .card, .pub, .contact-item { padding: 18px; }
+      .nav-inner {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding-top: 42px;
+      }
+
+      .card, .pub, .contact-item {
+        padding: 18px;
+      }
     }
   </style>
 </head>
 
 <body>
-  <canvas id="robotics-bg"></canvas>
-
   <div class="page">
     <header class="hero">
       <div class="hero-inner">
@@ -344,10 +355,6 @@
             <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
           </div>
           <div class="contact-item">
-            <span class="label">GitHub</span>
-            <a href="https://github.com/Ritirupa" target="_blank" rel="noopener noreferrer">github.com/Ritirupa</a>
-          </div>
-          <div class="contact-item">
             <span class="label">LinkedIn</span>
             <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
           </div>
@@ -359,136 +366,5 @@
       © 2026 Ritirupa Dey
     </footer>
   </div>
-
-  <script>
-    const canvas = document.getElementById("robotics-bg");
-    const ctx = canvas.getContext("2d");
-
-    let width = 0;
-    let height = 0;
-    let trajectories = [];
-
-    function resize() {
-      width = window.innerWidth;
-      height = window.innerHeight;
-      canvas.width = width;
-      canvas.height = height;
-
-      const count = Math.max(8, Math.floor((width * height) / 120000));
-      trajectories = [];
-
-      for (let i = 0; i < count; i++) {
-        const startX = Math.random() * width * 0.8;
-        const startY = Math.random() * height;
-        const endX = startX + (Math.random() * 260 + 140) * (Math.random() > 0.5 ? 1 : -1);
-        const endY = startY + (Math.random() * 180 - 90);
-        const cp1X = startX + (Math.random() * 180 + 60);
-        const cp1Y = startY + (Math.random() * 140 - 70);
-        const cp2X = endX - (Math.random() * 180 + 60);
-        const cp2Y = endY + (Math.random() * 140 - 70);
-
-        trajectories.push({
-          start: { x: startX, y: startY },
-          cp1: { x: cp1X, y: cp1Y },
-          cp2: { x: cp2X, y: cp2Y },
-          end: { x: endX, y: endY },
-          t: Math.random(),
-          speed: 0.0015 + Math.random() * 0.0015,
-          dots: 2 + Math.floor(Math.random() * 3)
-        });
-      }
-    }
-
-    function cubicPoint(p0, p1, p2, p3, t) {
-      const mt = 1 - t;
-      const mt2 = mt * mt;
-      const t2 = t * t;
-      return {
-        x: mt2 * mt * p0.x + 3 * mt2 * t * p1.x + 3 * mt * t2 * p2.x + t2 * t * p3.x,
-        y: mt2 * mt * p0.y + 3 * mt2 * t * p1.y + 3 * mt * t2 * p2.y + t2 * t * p3.y
-      };
-    }
-
-    function drawGrid() {
-      const spacing = width < 700 ? 54 : 76;
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.06)";
-      ctx.lineWidth = 1;
-
-      for (let x = 0; x < width; x += spacing) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x, height);
-        ctx.stroke();
-      }
-
-      for (let y = 0; y < height; y += spacing) {
-        ctx.beginPath();
-        ctx.moveTo(0, y);
-        ctx.lineTo(width, y);
-        ctx.stroke();
-      }
-    }
-
-    function drawTrajectory(tr) {
-      const p0 = tr.start;
-      const p1 = tr.cp1;
-      const p2 = tr.cp2;
-      const p3 = tr.end;
-
-      // path
-      ctx.beginPath();
-      ctx.moveTo(p0.x, p0.y);
-      ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
-      ctx.lineWidth = 2;
-      ctx.stroke();
-
-      // planning nodes / waypoints
-      [p0, p1, p2, p3].forEach((p, idx) => {
-        ctx.beginPath();
-        ctx.arc(p.x, p.y, idx === 0 || idx === 3 ? 3.2 : 2.4, 0, Math.PI * 2);
-        ctx.fillStyle = idx === 0 || idx === 3 ? "rgba(37, 99, 235, 0.9)" : "rgba(37, 99, 235, 0.55)";
-        ctx.fill();
-      });
-
-      // moving particle(s) along the trajectory
-      for (let i = 0; i < tr.dots; i++) {
-        const tt = (tr.t + i * 0.12) % 1;
-        const pos = cubicPoint(p0, p1, p2, p3, tt);
-        ctx.beginPath();
-        ctx.arc(pos.x, pos.y, 2.2, 0, Math.PI * 2);
-        ctx.fillStyle = "rgba(14, 165, 233, 0.92)";
-        ctx.fill();
-      }
-
-      tr.t += tr.speed;
-      if (tr.t > 1) tr.t -= 1;
-    }
-
-    function draw() {
-      ctx.clearRect(0, 0, width, height);
-
-      drawGrid();
-
-      // faint diagonal flow lines for a planning/robotics feel
-      ctx.strokeStyle = "rgba(37, 99, 235, 0.03)";
-      ctx.lineWidth = 1;
-      const spacing = width < 700 ? 160 : 220;
-      for (let x = -height; x < width + height; x += spacing) {
-        ctx.beginPath();
-        ctx.moveTo(x, 0);
-        ctx.lineTo(x + height * 0.72, height);
-        ctx.stroke();
-      }
-
-      trajectories.forEach(drawTrajectory);
-
-      requestAnimationFrame(draw);
-    }
-
-    window.addEventListener("resize", resize);
-    resize();
-    draw();
-  </script>
 </body>
 </html>
