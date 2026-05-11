@@ -28,25 +28,13 @@
       line-height: 1.7;
       color: var(--text);
       background:
-        radial-gradient(circle at 15% 20%, rgba(37, 99, 235, 0.08), transparent 22%),
-        radial-gradient(circle at 85% 30%, rgba(14, 165, 233, 0.08), transparent 18%),
-        radial-gradient(circle at 65% 85%, rgba(37, 99, 235, 0.06), transparent 24%),
+        radial-gradient(circle at 18% 18%, rgba(37, 99, 235, 0.07), transparent 24%),
+        radial-gradient(circle at 82% 24%, rgba(14, 165, 233, 0.06), transparent 18%),
+        radial-gradient(circle at 60% 84%, rgba(37, 99, 235, 0.05), transparent 22%),
         linear-gradient(180deg, #f8fafc 0%, #fafafa 100%);
       min-height: 100vh;
       overflow-x: hidden;
       position: relative;
-    }
-
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 0;
-      opacity: 0.45;
-      background-repeat: repeat;
-      background-size: 900px 600px;
-      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 900 600' fill='none'%3E%3Cg stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M70 110 H220 V70 H360' stroke='%232563eb' stroke-opacity='.22' stroke-width='3'/%3E%3Cpath d='M360 70 V160 H520 V110 H700' stroke='%232563eb' stroke-opacity='.18' stroke-width='3'/%3E%3Cpath d='M120 450 H260 V520 H420 V430 H560' stroke='%230ea5e9' stroke-opacity='.18' stroke-width='3'/%3E%3Cpath d='M560 430 H720 V360 H840' stroke='%232563eb' stroke-opacity='.18' stroke-width='3'/%3E%3Cpath d='M170 250 H300 V330 H430 V260 H610' stroke='%230ea5e9' stroke-opacity='.16' stroke-width='3'/%3E%3Ccircle cx='70' cy='110' r='6' fill='%232563eb' fill-opacity='.34'/%3E%3Ccircle cx='220' cy='110' r='6' fill='%232563eb' fill-opacity='.28'/%3E%3Ccircle cx='220' cy='70' r='5' fill='%230ea5e9' fill-opacity='.30'/%3E%3Ccircle cx='360' cy='70' r='6' fill='%232563eb' fill-opacity='.34'/%3E%3Ccircle cx='360' cy='160' r='5' fill='%230ea5e9' fill-opacity='.28'/%3E%3Ccircle cx='520' cy='160' r='6' fill='%232563eb' fill-opacity='.26'/%3E%3Ccircle cx='700' cy='110' r='6' fill='%232563eb' fill-opacity='.30'/%3E%3Ccircle cx='120' cy='450' r='6' fill='%232563eb' fill-opacity='.26'/%3E%3Ccircle cx='260' cy='450' r='5' fill='%230ea5e9' fill-opacity='.28'/%3E%3Ccircle cx='260' cy='520' r='6' fill='%232563eb' fill-opacity='.30'/%3E%3Ccircle cx='420' cy='520' r='5' fill='%230ea5e9' fill-opacity='.26'/%3E%3Ccircle cx='420' cy='430' r='6' fill='%232563eb' fill-opacity='.30'/%3E%3Ccircle cx='560' cy='430' r='6' fill='%232563eb' fill-opacity='.24'/%3E%3Ccircle cx='720' cy='360' r='6' fill='%230ea5e9' fill-opacity='.24'/%3E%3Ccircle cx='840' cy='360' r='5' fill='%232563eb' fill-opacity='.28'/%3E%3Ccircle cx='170' cy='250' r='6' fill='%232563eb' fill-opacity='.24'/%3E%3Ccircle cx='300' cy='250' r='5' fill='%230ea5e9' fill-opacity='.28'/%3E%3Ccircle cx='300' cy='330' r='6' fill='%232563eb' fill-opacity='.28'/%3E%3Ccircle cx='430' cy='330' r='5' fill='%230ea5e9' fill-opacity='.26'/%3E%3Ccircle cx='430' cy='260' r='6' fill='%232563eb' fill-opacity='.30'/%3E%3Ccircle cx='610' cy='260' r='5' fill='%230ea5e9' fill-opacity='.24'/%3E%3C/g%3E%3C/svg%3E");
     }
 
     a {
@@ -56,6 +44,16 @@
 
     a:hover {
       text-decoration: underline;
+    }
+
+    #robotics-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.7;
     }
 
     .page {
@@ -83,7 +81,7 @@
       height: 240px;
       object-fit: cover;
       border-radius: 12px;
-      border: 4px solid rgba(255,255,255,0.85);
+      border: 4px solid rgba(255,255,255,0.88);
       box-shadow: 0 15px 40px rgba(0,0,0,0.4);
       background: rgba(255,255,255,0.08);
     }
@@ -156,7 +154,7 @@
     }
 
     .card {
-      background: rgba(255, 255, 255, 0.88);
+      background: rgba(255, 255, 255, 0.84);
       border: 1px solid var(--border);
       border-radius: var(--radius);
       box-shadow: var(--shadow);
@@ -176,7 +174,7 @@
     }
 
     .pub {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 18px 20px;
@@ -214,7 +212,7 @@
     }
 
     .contact-item {
-      background: rgba(255, 255, 255, 0.92);
+      background: rgba(255, 255, 255, 0.88);
       border: 1px solid var(--border);
       border-radius: 16px;
       padding: 16px 18px;
@@ -274,6 +272,8 @@
 </head>
 
 <body>
+  <canvas id="robotics-bg"></canvas>
+
   <div class="page">
     <header class="hero">
       <div class="hero-inner">
@@ -379,5 +379,282 @@
       © 2026 Ritirupa Dey
     </footer>
   </div>
+
+  <script>
+    const canvas = document.getElementById("robotics-bg");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let t = 0;
+
+    const pathSpecs = [
+      {
+        start: [0.08, 0.74],
+        c1: [0.18, 0.60],
+        c2: [0.32, 0.72],
+        end: [0.48, 0.46],
+        color: "rgba(37, 99, 235, 0.40)"
+      },
+      {
+        start: [0.18, 0.28],
+        c1: [0.30, 0.14],
+        c2: [0.48, 0.22],
+        end: [0.63, 0.38],
+        color: "rgba(14, 165, 233, 0.36)"
+      },
+      {
+        start: [0.56, 0.72],
+        c1: [0.64, 0.56],
+        c2: [0.77, 0.48],
+        end: [0.90, 0.28],
+        color: "rgba(37, 99, 235, 0.34)"
+      }
+    ];
+
+    const obstacleSpecs = [
+      { x: 0.18, y: 0.55, w: 0.10, h: 0.08 },
+      { x: 0.40, y: 0.18, w: 0.12, h: 0.10 },
+      { x: 0.66, y: 0.52, w: 0.12, h: 0.09 },
+      { x: 0.73, y: 0.74, w: 0.11, h: 0.08 }
+    ];
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+    }
+
+    function bezierPoint(p0, p1, p2, p3, u) {
+      const mt = 1 - u;
+      const mt2 = mt * mt;
+      const u2 = u * u;
+      return {
+        x: mt2 * mt * p0.x + 3 * mt2 * u * p1.x + 3 * mt * u2 * p2.x + u2 * u * p3.x,
+        y: mt2 * mt * p0.y + 3 * mt2 * u * p1.y + 3 * mt * u2 * p2.y + u2 * u * p3.y
+      };
+    }
+
+    function bezierTangent(p0, p1, p2, p3, u) {
+      const mt = 1 - u;
+      return {
+        x: 3 * mt * mt * (p1.x - p0.x) + 6 * mt * u * (p2.x - p1.x) + 3 * u * u * (p3.x - p2.x),
+        y: 3 * mt * mt * (p1.y - p0.y) + 6 * mt * u * (p2.y - p1.y) + 3 * u * u * (p3.y - p2.y)
+      };
+    }
+
+    function drawRoundedRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function drawBackground() {
+      ctx.clearRect(0, 0, width, height);
+
+      // faint workspace grid
+      const grid = width < 700 ? 54 : 72;
+      ctx.strokeStyle = "rgba(15, 23, 42, 0.045)";
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x < width; x += grid) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < height; y += grid) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      // soft planning halos
+      const halo1 = ctx.createRadialGradient(width * 0.24, height * 0.28, 0, width * 0.24, height * 0.28, Math.min(width, height) * 0.28);
+      halo1.addColorStop(0, "rgba(37, 99, 235, 0.10)");
+      halo1.addColorStop(1, "rgba(37, 99, 235, 0)");
+      ctx.fillStyle = halo1;
+      ctx.fillRect(0, 0, width, height);
+
+      const halo2 = ctx.createRadialGradient(width * 0.76, height * 0.68, 0, width * 0.76, height * 0.68, Math.min(width, height) * 0.25);
+      halo2.addColorStop(0, "rgba(14, 165, 233, 0.08)");
+      halo2.addColorStop(1, "rgba(14, 165, 233, 0)");
+      ctx.fillStyle = halo2;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    function drawObstacles() {
+      obstacleSpecs.forEach((o, idx) => {
+        const x = o.x * width;
+        const y = o.y * height;
+        const w = o.w * width;
+        const h = o.h * height;
+
+        ctx.save();
+        drawRoundedRect(x, y, w, h, 16);
+        ctx.fillStyle = "rgba(15, 23, 42, 0.08)";
+        ctx.fill();
+        ctx.strokeStyle = idx % 2 === 0 ? "rgba(37, 99, 235, 0.32)" : "rgba(14, 165, 233, 0.26)";
+        ctx.lineWidth = 2;
+        ctx.stroke();
+
+        // hatch lines inside obstacle
+        ctx.clip();
+        ctx.strokeStyle = "rgba(15, 23, 42, 0.06)";
+        ctx.lineWidth = 1;
+        for (let i = -h; i < w; i += 12) {
+          ctx.beginPath();
+          ctx.moveTo(x + i, y);
+          ctx.lineTo(x + i + h, y + h);
+          ctx.stroke();
+        }
+        ctx.restore();
+      });
+    }
+
+    function drawPath(spec, phaseOffset) {
+      const p0 = { x: spec.start[0] * width, y: spec.start[1] * height };
+      const p1 = { x: spec.c1[0] * width, y: spec.c1[1] * height };
+      const p2 = { x: spec.c2[0] * width, y: spec.c2[1] * height };
+      const p3 = { x: spec.end[0] * width, y: spec.end[1] * height };
+
+      // draw full planned path
+      ctx.beginPath();
+      ctx.moveTo(p0.x, p0.y);
+      ctx.bezierCurveTo(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y);
+      ctx.strokeStyle = spec.color;
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      // draw waypoints
+      [p0, p1, p2, p3].forEach((p, i) => {
+        ctx.beginPath();
+        ctx.arc(p.x, p.y, i === 0 || i === 3 ? 5 : 3.6, 0, Math.PI * 2);
+        ctx.fillStyle = i === 0 ? "rgba(37, 99, 235, 0.92)" : i === 3 ? "rgba(14, 165, 233, 0.95)" : "rgba(37, 99, 235, 0.55)";
+        ctx.fill();
+      });
+
+      // moving robot on the path
+      const speed = (t * 0.0012 + phaseOffset) % 1;
+      const pt = bezierPoint(p0, p1, p2, p3, speed);
+      const tan = bezierTangent(p0, p1, p2, p3, speed);
+      const angle = Math.atan2(tan.y, tan.x);
+
+      // trailing segment for motion feel
+      const trailU = Math.max(0, speed - 0.06);
+      const trailStart = bezierPoint(p0, p1, p2, p3, trailU);
+      ctx.beginPath();
+      ctx.moveTo(trailStart.x, trailStart.y);
+      ctx.lineTo(pt.x, pt.y);
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.28)";
+      ctx.lineWidth = 6;
+      ctx.stroke();
+
+      // robot body
+      ctx.save();
+      ctx.translate(pt.x, pt.y);
+      ctx.rotate(angle);
+
+      ctx.beginPath();
+      ctx.arc(0, 0, 10, 0, Math.PI * 2);
+      ctx.fillStyle = "rgba(15, 23, 42, 0.92)";
+      ctx.fill();
+
+      // robot sensor halo
+      ctx.beginPath();
+      ctx.arc(0, 0, 17, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.18)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+
+      // heading arrow
+      ctx.beginPath();
+      ctx.moveTo(8, 0);
+      ctx.lineTo(20, 0);
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.96)";
+      ctx.lineWidth = 3;
+      ctx.stroke();
+
+      ctx.beginPath();
+      ctx.moveTo(20, 0);
+      ctx.lineTo(14, -4);
+      ctx.lineTo(14, 4);
+      ctx.closePath();
+      ctx.fillStyle = "rgba(14, 165, 233, 0.96)";
+      ctx.fill();
+
+      ctx.restore();
+
+      // pulse at goal
+      const pulse = 4 + 2 * Math.sin((t * 0.03 + phaseOffset * 12) % (Math.PI * 2));
+      ctx.beginPath();
+      ctx.arc(p3.x, p3.y, pulse, 0, Math.PI * 2);
+      ctx.strokeStyle = "rgba(14, 165, 233, 0.25)";
+      ctx.lineWidth = 2;
+      ctx.stroke();
+    }
+
+    function draw() {
+      drawBackground();
+      drawObstacles();
+
+      drawPath(pathSpecs[0], 0.00);
+      drawPath(pathSpecs[1], 0.28);
+      drawPath(pathSpecs[2], 0.58);
+
+      // subtle control arrows between some points
+      ctx.strokeStyle = "rgba(37, 99, 235, 0.12)";
+      ctx.fillStyle = "rgba(37, 99, 235, 0.12)";
+      ctx.lineWidth = 2;
+
+      const arrows = [
+        [0.28, 0.62, 0.38, 0.54],
+        [0.52, 0.34, 0.61, 0.40],
+        [0.67, 0.66, 0.75, 0.58]
+      ];
+
+      arrows.forEach(([x1, y1, x2, y2]) => {
+        const sx = x1 * width;
+        const sy = y1 * height;
+        const ex = x2 * width;
+        const ey = y2 * height;
+        const ang = Math.atan2(ey - sy, ex - sx);
+
+        ctx.beginPath();
+        ctx.moveTo(sx, sy);
+        ctx.lineTo(ex, ey);
+        ctx.stroke();
+
+        ctx.save();
+        ctx.translate(ex, ey);
+        ctx.rotate(ang);
+        ctx.beginPath();
+        ctx.moveTo(0, 0);
+        ctx.lineTo(-10, -4);
+        ctx.lineTo(-10, 4);
+        ctx.closePath();
+        ctx.fill();
+        ctx.restore();
+      });
+
+      t += 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
 </body>
 </html>
