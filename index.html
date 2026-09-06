@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,6 +34,831 @@
         linear-gradient(180deg, #f8fafc 0%, #fafafa 100%);
       min-height: 100vh;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover {
+      text-decoration: underline;
+    }
+
+    #robotics-bg {
+      position: fixed;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      z-index: 0;
+      pointer-events: none;
+      opacity: 0.88;
+    }
+
+    .page {
+      position: relative;
+      z-index: 1;
+    }
+
+    .hero {
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.96), rgba(30, 41, 59, 0.92));
+      color: white;
+      padding: 60px 20px;
+    }
+
+    .hero-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      display: grid;
+      grid-template-columns: 260px 1fr;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .profile-pic {
+      width: 240px;
+      height: 240px;
+      object-fit: cover;
+      border-radius: 12px;
+      border: 4px solid rgba(255, 255, 255, 0.88);
+      box-shadow: 0 15px 40px rgba(0, 0, 0, 0.4);
+      background: rgba(255, 255, 255, 0.08);
+    }
+
+    .hero-text {
+      text-align: left;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      font-size: 0.85rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: rgba(255, 255, 255, 0.75);
+      margin-bottom: 12px;
+    }
+
+    h1 {
+      margin: 0;
+      font-size: clamp(2.2rem, 5vw, 4rem);
+      line-height: 1.08;
+      letter-spacing: -0.04em;
+    }
+
+    .subtitle {
+      margin: 14px 0 0;
+      font-size: 1.06rem;
+      color: rgba(255, 255, 255, 0.86);
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 10;
+      background: rgba(255, 255, 255, 0.86);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid rgba(229, 231, 235, 0.85);
+    }
+
+    .nav-inner {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 12px 20px;
+      display: flex;
+      gap: 18px;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+
+    .nav-inner a {
+      color: var(--brand);
+      font-weight: 600;
+    }
+
+    main {
+      max-width: var(--max);
+      margin: 0 auto;
+      padding: 56px 20px 28px;
+    }
+
+    section {
+      margin-bottom: 42px;
+    }
+
+    h2 {
+      font-size: 1.45rem;
+      margin: 0 0 18px;
+      color: var(--brand);
+      letter-spacing: -0.02em;
+    }
+
+    .card {
+      background: rgba(255, 255, 255, 0.84);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      padding: 22px;
+      backdrop-filter: blur(8px);
+    }
+
+    .about p {
+      margin: 0;
+      font-size: 1.03rem;
+    }
+
+    .pub-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .pub {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .pub h3 {
+      margin: 0 0 8px;
+      font-size: 1.04rem;
+      line-height: 1.35;
+      color: var(--brand);
+    }
+
+    .pub p {
+      margin: 0;
+      color: var(--text);
+    }
+
+    .pub .desc {
+      margin-top: 8px;
+      color: #374151;
+    }
+
+    .links {
+      display: flex;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 12px;
+    }
+
+    .links a {
+      font-weight: 600;
+    }
+
+    .exp-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .exp {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .exp h3 {
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--brand);
+    }
+
+    .exp .exp-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .exp .exp-org {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .exp .desc {
+      margin: 0;
+      color: #374151;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      color: var(--brand);
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
+    .news-list {
+      list-style: none;
+      margin: 16px 0 0;
+      padding: 0;
+      display: grid;
+      gap: 10px;
+    }
+
+    .news-list li {
+      display: grid;
+      grid-template-columns: 130px 1fr;
+      gap: 14px;
+      align-items: start;
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 14px;
+      padding: 12px 18px;
+      box-shadow: 0 6px 16px rgba(15, 23, 42, 0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .news-date {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--accent);
+      white-space: nowrap;
+    }
+
+    .news-text {
+      color: #374151;
+    }
+
+    @media (max-width: 640px) {
+      .news-list li {
+        grid-template-columns: 1fr;
+        gap: 4px;
+      }
+    }
+
+    .contact-grid {
+      display: grid;
+      gap: 12px;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    }
+
+    .contact-item {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.04);
+      backdrop-filter: blur(8px);
+    }
+
+    .contact-item .label {
+      display: block;
+      font-size: 0.85rem;
+      color: var(--muted);
+      margin-bottom: 4px;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    footer {
+      text-align: center;
+      color: var(--muted);
+      padding: 28px 18px 38px;
+      font-size: 0.92rem;
+      position: relative;
+      z-index: 1;
+    }
+
+    @media (max-width: 768px) {
+      .hero-inner {
+        grid-template-columns: 1fr;
+        text-align: center;
+        justify-items: center;
+      }
+
+      .profile-pic {
+        width: 180px;
+        height: 180px;
+      }
+
+      .hero-text {
+        text-align: center;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .nav-inner {
+        justify-content: flex-start;
+      }
+
+      main {
+        padding-top: 42px;
+      }
+
+      .card, .pub, .contact-item {
+        padding: 18px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <canvas id="robotics-bg"></canvas>
+
+  <div class="page">
+    <header class="hero">
+      <div class="hero-inner">
+        <img src="assets/photo.jpg" alt="Ritirupa Dey" class="profile-pic" />
+        <div class="hero-text">
+          <div class="eyebrow">AI • ML • Autonomous Systems</div>
+          <h1>Ritirupa Dey</h1>
+          <p class="subtitle">PhD Candidate in Computer Science</p>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="nav-inner">
+        <a href="#about">About</a>
+        <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+      </div>
+    </nav>
+
+    <main>
+      <section id="about" class="about">
+        <h2>About</h2>
+        <div class="card">
+          <p>
+            Hi! I am a 3rd year PhD candidate in Computer Science at the University of South Carolina. I am part of the AI Institute and the CSCE Department, working with Dr. Vignesh Narayanan at the <a href="https://vigsnar.github.io" target="_blank" rel="noopener noreferrer">
+    Dynamical Systems and AI Research
+</a> group since Fall 2024. In Summer 2026, I was at Argonne National Laboratory, where I worked on developing a distributed reinforcement learning framework to address learning-induced non-stationarity in multi-agent systems under partial observability. Before that, I completed my Master's in Data Science from Chennai Mathematical Institute, India in 2023 and my Bachelor's in Statistics from the University of Calcutta in 2021. My research broadly focuses on AI for collaborative autonomy, with an emphasis on developing adaptive, safe, and resource-efficient learning and decision-making methods. I am particularly interested in the theoretical foundations of learning-based systems, with a focus on convergence, stability, safety, and efficiency. </p>
+        </div>
+      </section>
+
+      <section id="publications">
+        <h2>Publications</h2>
+        <div class="pub-list">
+          <article class="pub">
+            <h3>Safe Adaptive Output Tracking Controller for Robotic Manipulators</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. International Joint Conference on Neural Networks (IJCNN), 2026.</p>
+            <p class="desc">
+              An adaptive output tracking control approach for robotic manipulators that incorporates safety guarantees into the learning-based control design.
+            </p>
+            <div class="links">
+              <a href="https://par.nsf.gov/biblio/10694119" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://scholar.google.com/scholar?oi=bibs&cluster=1895188000165136948&btnI=1&hl=en" target="_blank" rel="noopener noreferrer">Scholar</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Transactions on Industrial Informatics, 2026.</p>
+            <p class="desc">
+              A data-driven control framework for robotic manipulators in human-in-the-loop settings, with an emphasis on safety-aware adaptation under uncertainty.
+            </p>
+            <div class="links">
+              <a href="https://ieeexplore.ieee.org/abstract/document/11275949" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/tii/DeySN26a" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>State-Constrained Online Adaptive Control for Robotic Manipulators</h3>
+            <p><strong>Ritirupa Dey</strong>, Avimanyu Sahoo, Vignesh Narayanan. IEEE Control Systems Letters, 2025.</p>
+            <p class="desc">
+              An online adaptive control method that explicitly accounts for state constraints, aiming to keep robotic systems within safe operating limits in real time.
+            </p>
+            <div class="links">
+              <a href="https://doi.org/10.1109/LCSYS.2025.3645198" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/journals/csysl/DeySN25" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. AAAI 2026.</p>
+            <p class="desc">
+              An ontology-based explanation tool for multi-agent path finding that improves transparency and interpretability of planning decisions.
+            </p>
+            <div class="links">
+              <a href="https://ojs.aaai.org/index.php/AAAI/article/view/42367" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://dblp.org/rec/conf/aaai/MuppasaniDSN26" target="_blank" rel="noopener noreferrer">DBLP</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Towards Information-Optimized Multi-Agent Path Finding: A Hybrid Framework with Reduced Inter-Agent Information Sharing</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Risha Patel, Biplav Srivastava, Vignesh Narayanan. arXiv, 2026.</p>
+            <p class="desc">
+              A hybrid multi-agent path finding framework that reduces inter-agent communication while preserving coordination quality and scalability.
+            </p>
+            <div class="links">
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">Paper</a>
+              <a href="https://doi.org/10.48550/arXiv.2510.09469" target="_blank" rel="noopener noreferrer">DOI</a>
+            </div>
+          </article>
+
+          <article class="pub">
+            <h3>Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy</h3>
+            <p>Bharath Muppasani, <strong>Ritirupa Dey</strong>, Biplav Srivastava, Vignesh Narayanan. CoRR / arXiv, 2025.</p>
+            <p class="desc">
+              A scalable path-planning approach that combines collision-aware coordination with a hybrid execution strategy for large multi-agent systems.
+            </p>
+            <div class="links">
+              <a href="https://dblp.org/rec/journals/corr/abs-2510-09469" target="_blank" rel="noopener noreferrer">DBLP</a>
+              <a href="https://arxiv.org/abs/2510.09469" target="_blank" rel="noopener noreferrer">arXiv</a>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="experience">
+        <h2>Experience</h2>
+        <div class="exp-list">
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Givens Associate — Nonstationary MARL</h3>
+              <span class="exp-date">June 2026 – August 2026</span>
+            </div>
+            <p class="exp-org">Argonne National Laboratory · Lemont, IL, USA</p>
+            <p class="desc">
+              Designed and implemented a distributed actor-critic reinforcement learning framework to address learning-induced non-stationarity in multi-agent systems under partial observability. Proved finite-time convergence guarantees to global optima and validated the framework empirically on multi-robot hardware, opening new research directions for agentic AI-based systems.
+            </p>
+            <div class="tags">
+              <span class="tag">Multi-Agent RL</span>
+              <span class="tag">Non-stationarity</span>
+              <span class="tag">Robotics</span>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Associate Data Scientist</h3>
+              <span class="exp-date">July 2023 – May 2024</span>
+            </div>
+            <p class="exp-org">IDFC First Bank · Mumbai, India</p>
+            <p class="desc">
+              Developed and deployed production machine learning models (Random Forest, XGBoost) to score customer risk for the Business Intelligence Unit, enhancing interpretability and decision-making efficiency. Built SQL/Python data pipelines for scorecard monitoring and performance dashboards for the Collections team. Shipped a generative AI model for customer language-preference detection, improving overall customer experience by 3.4%.
+            </p>
+            <div class="tags">
+              <span class="tag">ML in Production</span>
+              <span class="tag">Data Pipelines</span>
+              <span class="tag">Generative AI</span>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Data Science Intern</h3>
+              <span class="exp-date">May 2022 – September 2022</span>
+            </div>
+            <p class="exp-org">TCS Research · Kolkata, India</p>
+            <p class="desc">
+              Trained a GAN-based image reconstruction pipeline to restore low-quality satellite imagery for downstream vision and navigation tasks. Deployed a CNN-based regression model for satellite pose and orientation estimation with 95% accuracy, improving localization precision and enabling automated satellite control.
+            </p>
+            <div class="tags">
+              <span class="tag">GANs</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Satellite Imaging</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section id="news">
+        <h2>News</h2>
+        <ul class="news-list">
+          <li><span class="news-date">June 2026</span><span class="news-text">Started as a Givens Associate at Argonne National Laboratory, researching nonstationary multi-agent reinforcement learning!</span></li>
+          <li><span class="news-date">June 2026</span><span class="news-text">Paper accepted at IJCNN 2026: "Safe Adaptive Output Tracking Controller for Robotic Manipulators"!</span></li>
+          <li><span class="news-date">2026</span><span class="news-text">Paper accepted at IEEE Transactions on Industrial Informatics: "Safe Data-Enabled Control of Human-in-the-Loop Robotic Manipulator Systems"!</span></li>
+          <li><span class="news-date">May 2026</span><span class="news-text">Presented at the American Control Conference (ACC 2026) in New Orleans, Louisiana!</span></li>
+          <li><span class="news-date">April 2026</span><span class="news-text">Passed my PhD qualifying exams and officially became a PhD candidate!</span></li>
+          <li><span class="news-date">January 2026</span><span class="news-text">Presented "OMEGA: An Ontology-Driven Tool for Explaining Multi-Agent Path Finding" at the 40th AAAI Conference on Artificial Intelligence in Singapore!</span></li>
+          <li><span class="news-date">October 2025</span><span class="news-text">Attended the SWE25 Annual Conference in New Orleans as an active SWE UofSC member, supported by a chapter travel grant!</span></li>
+          <li><span class="news-date">2025</span><span class="news-text">Paper accepted at IEEE Control Systems Letters: "State-Constrained Online Adaptive Control for Robotic Manipulators"!</span></li>
+          <li><span class="news-date">2025</span><span class="news-text">Released a preprint on arXiv: "Scalable Multi-Agent Path Finding using Collision-Aware Dynamic Alert Mask and a Hybrid Execution Strategy"!</span></li>
+          <li><span class="news-date">June 2025</span><span class="news-text">Attended the Early Graduate Research in Applied Mathematics (EaGR) workshop at Caltech, funded by an NSF travel grant!</span></li>
+          <li><span class="news-date">March 2025</span><span class="news-text">Presented at the CSE Research Symposium, Columbia, South Carolina!</span></li>
+          <li><span class="news-date">February 2025</span><span class="news-text">Presented at the 39th Annual AAAI Conference on Artificial Intelligence in Philadelphia, Pennsylvania!</span></li>
+          <li><span class="news-date">August 2024</span><span class="news-text">Started my PhD in Computer Science at the University of South Carolina, advised by Prof. Vignesh Narayanan!</span></li>
+          <li><span class="news-date">July 2023</span><span class="news-text">Joined IDFC First Bank in Mumbai as an Associate Data Scientist!</span></li>
+          <li><span class="news-date">May 2023</span><span class="news-text">Graduated from Chennai Mathematical Institute with an MS in Data Science!</span></li>
+          <li><span class="news-date">April 2023</span><span class="news-text">Recognized as Best AI Intern 2023 at Coriolis Tech!</span></li>
+        </ul>
+      </section>
+
+      <section id="contact">
+        <h2>Contact</h2>
+        <div class="contact-grid">
+          <div class="contact-item">
+            <span class="label">Email</span>
+            <a href="mailto:deyr@email.sc.edu">deyr@email.sc.edu</a><br />
+            <a href="mailto:ritirupa2000@gmail.com">ritirupa2000@gmail.com</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">Google Scholar</span>
+            <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Ritirupa Dey</a>
+          </div>
+          <div class="contact-item">
+            <span class="label">LinkedIn</span>
+            <a href="https://www.linkedin.com/in/ritirupa-dey-7524b9209/" target="_blank" rel="noopener noreferrer">Ritirupa Dey</a>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      © 2026 Ritirupa Dey
+    </footer>
+  </div>
+
+  <script>
+    const canvas = document.getElementById("robotics-bg");
+    const ctx = canvas.getContext("2d");
+
+    let width = 0;
+    let height = 0;
+    let t = 0;
+
+    function lerp(a, b, u) {
+      return a + (b - a) * u;
+    }
+
+    // ---------- Multi-agent path finding scenario ----------
+    // Each agent has its own waypoint path (in fractional coords) and color.
+    const agentSpecs = [
+      {
+        color: "37, 99, 235",
+        nodes: [
+          [0.06, 0.85], [0.06, 0.62], [0.22, 0.62], [0.22, 0.42], [0.40, 0.42]
+        ],
+        speed: 0.00042
+      },
+      {
+        color: "14, 165, 233",
+        nodes: [
+          [0.42, 0.90], [0.42, 0.70], [0.30, 0.70], [0.30, 0.50], [0.18, 0.50], [0.18, 0.30]
+        ],
+        speed: 0.00035
+      },
+      {
+        color: "99, 102, 241",
+        nodes: [
+          [0.10, 0.20], [0.28, 0.20], [0.28, 0.36], [0.40, 0.36], [0.40, 0.55]
+        ],
+        speed: 0.0005
+      }
+    ];
+
+    const obstacles = [
+      { x: 0.24, y: 0.55, w: 0.05, h: 0.06 },
+      { x: 0.33, y: 0.28, w: 0.05, h: 0.06 }
+    ];
+
+    let particles = [];
+    function buildParticles() {
+      const count = width < 700 ? 8 : 14;
+      particles = Array.from({ length: count }, () => ({
+        x: Math.random(),
+        y: Math.random(),
+        r: 1 + Math.random() * 1.3,
+        vx: (Math.random() - 0.5) * 0.00008,
+        vy: (Math.random() - 0.5) * 0.00008,
+        phase: Math.random() * Math.PI * 2
+      }));
+    }
+
+    function resize() {
+      width = window.innerWidth;
+      height = window.innerHeight;
+      canvas.width = width;
+      canvas.height = height;
+      buildParticles();
+    }
+
+    function pathPoint(points, u) {
+      const total = points.length - 1;
+      const seg = Math.min(total - 1, Math.floor(u * total));
+      const localT = (u * total) - seg;
+      const p0 = points[seg];
+      const p1 = points[seg + 1];
+      return {
+        x: lerp(p0.x, p1.x, localT) * width,
+        y: lerp(p0.y, p1.y, localT) * height
+      };
+    }
+
+    function pathTangent(points, u) {
+      const total = points.length - 1;
+      const seg = Math.min(total - 1, Math.floor(u * total));
+      const p0 = points[seg];
+      const p1 = points[seg + 1];
+      return {
+        x: (p1.x - p0.x) * width,
+        y: (p1.y - p0.y) * height
+      };
+    }
+
+    function drawRoundedRect(x, y, w, h, r) {
+      ctx.beginPath();
+      ctx.moveTo(x + r, y);
+      ctx.lineTo(x + w - r, y);
+      ctx.quadraticCurveTo(x + w, y, x + w, y + r);
+      ctx.lineTo(x + w, y + h - r);
+      ctx.quadraticCurveTo(x + w, y + h, x + w - r, y + h);
+      ctx.lineTo(x + r, y + h);
+      ctx.quadraticCurveTo(x, y + h, x, y + h - r);
+      ctx.lineTo(x, y + r);
+      ctx.quadraticCurveTo(x, y, x + r, y);
+      ctx.closePath();
+    }
+
+    function drawBackground() {
+      ctx.clearRect(0, 0, width, height);
+
+      const grid = width < 700 ? 58 : 78;
+      ctx.strokeStyle = "rgba(15, 23, 42, 0.03)";
+      ctx.lineWidth = 1;
+
+      for (let x = 0; x < width; x += grid) {
+        ctx.beginPath();
+        ctx.moveTo(x, 0);
+        ctx.lineTo(x, height);
+        ctx.stroke();
+      }
+
+      for (let y = 0; y < height; y += grid) {
+        ctx.beginPath();
+        ctx.moveTo(0, y);
+        ctx.lineTo(width, y);
+        ctx.stroke();
+      }
+
+      const halo1 = ctx.createRadialGradient(width * 0.15, height * 0.2, 0, width * 0.15, height * 0.2, Math.min(width, height) * 0.32);
+      halo1.addColorStop(0, "rgba(37, 99, 235, 0.09)");
+      halo1.addColorStop(1, "rgba(37, 99, 235, 0)");
+      ctx.fillStyle = halo1;
+      ctx.fillRect(0, 0, width, height);
+
+      const halo2 = ctx.createRadialGradient(width * 0.85, height * 0.8, 0, width * 0.85, height * 0.8, Math.min(width, height) * 0.28);
+      halo2.addColorStop(0, "rgba(14, 165, 233, 0.08)");
+      halo2.addColorStop(1, "rgba(14, 165, 233, 0)");
+      ctx.fillStyle = halo2;
+      ctx.fillRect(0, 0, width, height);
+    }
+
+    function drawParticles() {
+      particles.forEach((p) => {
+        p.x += p.vx;
+        p.y += p.vy;
+        if (p.x < 0) p.x = 1;
+        if (p.x > 1) p.x = 0;
+        if (p.y < 0) p.y = 1;
+        if (p.y > 1) p.y = 0;
+
+        const twinkle = 0.35 + 0.35 * Math.sin(t * 0.02 + p.phase);
+        ctx.beginPath();
+        ctx.arc(p.x * width, p.y * height, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(37, 99, 235, ${0.08 + twinkle * 0.08})`;
+        ctx.fill();
+      });
+    }
+
+    function drawObstacles() {
+      obstacles.forEach((o, idx) => {
+        const x = o.x * width;
+        const y = o.y * height;
+        const w = o.w * width;
+        const h = o.h * height;
+
+        ctx.save();
+        drawRoundedRect(x, y, w, h, 10);
+        ctx.fillStyle = "rgba(15, 23, 42, 0.06)";
+        ctx.fill();
+        ctx.strokeStyle = idx % 2 === 0 ? "rgba(37, 99, 235, 0.22)" : "rgba(14, 165, 233, 0.2)";
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+        ctx.restore();
+      });
+    }
+
+    function drawAgents() {
+      const positions = [];
+
+      agentSpecs.forEach((spec) => {
+        const pts = spec.nodes.map(([x, y]) => ({ x, y }));
+
+        // faint dashed path
+        ctx.beginPath();
+        ctx.moveTo(pts[0].x * width, pts[0].y * height);
+        for (let i = 1; i < pts.length; i++) {
+          ctx.lineTo(pts[i].x * width, pts[i].y * height);
+        }
+        ctx.strokeStyle = `rgba(${spec.color}, 0.22)`;
+        ctx.lineWidth = 1.6;
+        ctx.setLineDash([1, 6]);
+        ctx.stroke();
+        ctx.setLineDash([]);
+
+        const u = (t * spec.speed) % 1;
+        const pos = pathPoint(pts, u);
+        const tan = pathTangent(pts, u);
+        const angle = Math.atan2(tan.y, tan.x);
+
+        // short trail
+        const trailU = Math.max(0, u - 0.04);
+        const trailPos = pathPoint(pts, trailU);
+        ctx.beginPath();
+        ctx.moveTo(trailPos.x, trailPos.y);
+        ctx.lineTo(pos.x, pos.y);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.28)`;
+        ctx.lineWidth = 3;
+        ctx.stroke();
+
+        // start / goal markers
+        const start = { x: pts[0].x * width, y: pts[0].y * height };
+        const goal = { x: pts[pts.length - 1].x * width, y: pts[pts.length - 1].y * height };
+        ctx.beginPath();
+        ctx.arc(goal.x, goal.y, 4, 0, Math.PI * 2);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.35)`;
+        ctx.lineWidth = 1.5;
+        ctx.stroke();
+
+        // agent glyph
+        ctx.save();
+        ctx.translate(pos.x, pos.y);
+        ctx.rotate(angle);
+        ctx.beginPath();
+        ctx.arc(0, 0, 6, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${spec.color}, 0.85)`;
+        ctx.fill();
+        ctx.beginPath();
+        ctx.moveTo(6, 0);
+        ctx.lineTo(11, 0);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.85)`;
+        ctx.lineWidth = 2;
+        ctx.stroke();
+        ctx.restore();
+
+        positions.push(pos);
+      });
+
+      // faint communication links when agents are near each other
+      for (let i = 0; i < positions.length; i++) {
+        for (let j = i + 1; j < positions.length; j++) {
+          const dx = positions[i].x - positions[j].x;
+          const dy = positions[i].y - positions[j].y;
+          const dist = Math.hypot(dx, dy);
+          const threshold = Math.min(width, height) * 0.28;
+          if (dist < threshold) {
+            const alpha = 0.12 * (1 - dist / threshold);
+            ctx.beginPath();
+            ctx.moveTo(positions[i].x, positions[i].y);
+            ctx.lineTo(positions[j].x, positions[j].y);
+            ctx.strokeStyle = `rgba(15, 23, 42, ${alpha})`;
+            ctx.lineWidth = 1;
+            ctx.stroke();
+          }
+        }
+      }
+    }
+
+    function draw() {
+      drawBackground();
+      drawParticles();
+      drawObstacles();
+      drawAgents();
+
+      t += 1;
+      requestAnimationFrame(draw);
+    }
+
+    window.addEventListener("resize", resize);
+    resize();
+    draw();
+  </script>
+</body>
+</html>      overflow-x: hidden;
       position: relative;
     }
 
