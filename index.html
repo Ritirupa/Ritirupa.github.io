@@ -604,36 +604,74 @@
       return a + (b - a) * u;
     }
 
-    // ---------- Multi-agent path finding scenario ----------
-    // Each agent has its own waypoint path (in fractional coords) and color.
+    // ---------- Multi-agent path finding (MAPF) scenario ----------
+    // A grid-world where several agents navigate from start to goal around obstacles.
+    const grid = { x0: 0.04, y0: 0.10, x1: 0.96, y1: 0.92, cols: 12, rows: 8 };
+
+    function cellW() { return (grid.x1 - grid.x0) / grid.cols; }
+    function cellH() { return (grid.y1 - grid.y0) / grid.rows; }
+    function cellCenter(c, r) {
+      return {
+        x: grid.x0 + (c + 0.5) * cellW(),
+        y: grid.y0 + (r + 0.5) * cellH()
+      };
+    }
+    function cellsToPoints(cells) {
+      return cells.map(([c, r]) => cellCenter(c, r));
+    }
+
+    const obstacleCells = [
+      [3, 2], [3, 3], [3, 4],
+      [7, 1], [7, 2],
+      [5, 5], [6, 5],
+      [9, 3], [9, 4],
+      [1, 5],
+      [10, 6]
+    ];
+
     const agentSpecs = [
       {
         color: "37, 99, 235",
-        nodes: [
-          [0.06, 0.85], [0.06, 0.62], [0.22, 0.62], [0.22, 0.42], [0.40, 0.42]
-        ],
-        speed: 0.00042
+        cells: [[0, 0], [1, 0], [1, 3]],
+        speed: 0.00028
       },
       {
         color: "14, 165, 233",
-        nodes: [
-          [0.42, 0.90], [0.42, 0.70], [0.30, 0.70], [0.30, 0.50], [0.18, 0.50], [0.18, 0.30]
-        ],
-        speed: 0.00035
+        cells: [[11, 0], [10, 0], [10, 3]],
+        speed: 0.00033
       },
       {
         color: "99, 102, 241",
-        nodes: [
-          [0.10, 0.20], [0.28, 0.20], [0.28, 0.36], [0.40, 0.36], [0.40, 0.55]
-        ],
-        speed: 0.0005
+        cells: [[0, 7], [0, 4], [2, 4]],
+        speed: 0.0003
+      },
+      {
+        color: "236, 72, 153",
+        cells: [[11, 7], [11, 4], [10, 4]],
+        speed: 0.00036
+      },
+      {
+        color: "16, 185, 129",
+        cells: [[3, 7], [5, 7], [5, 6]],
+        speed: 0.00031
+      },
+      {
+        color: "245, 158, 11",
+        cells: [[8, 7], [6, 7], [6, 6]],
+        speed: 0.00026
       }
     ];
 
-    const obstacles = [
-      { x: 0.24, y: 0.55, w: 0.05, h: 0.06 },
-      { x: 0.33, y: 0.28, w: 0.05, h: 0.06 }
-    ];
+    agentSpecs.forEach((spec) => {
+      spec.nodes = cellsToPoints(spec.cells).map((p) => [p.x, p.y]);
+    });
+
+    const obstacles = obstacleCells.map(([c, r]) => ({
+      x: grid.x0 + c * cellW(),
+      y: grid.y0 + r * cellH(),
+      w: cellW(),
+      h: cellH()
+    }));
 
     let particles = [];
     function buildParticles() {
@@ -744,6 +782,32 @@
       });
     }
 
+    function drawGridArea() {
+      const x0 = grid.x0 * width;
+      const y0 = grid.y0 * height;
+      const x1 = grid.x1 * width;
+      const y1 = grid.y1 * height;
+      const cw = cellW() * width;
+      const ch = cellH() * height;
+
+      ctx.strokeStyle = "rgba(15, 23, 42, 0.05)";
+      ctx.lineWidth = 1;
+      for (let c = 0; c <= grid.cols; c++) {
+        const x = x0 + c * cw;
+        ctx.beginPath();
+        ctx.moveTo(x, y0);
+        ctx.lineTo(x, y1);
+        ctx.stroke();
+      }
+      for (let r = 0; r <= grid.rows; r++) {
+        const y = y0 + r * ch;
+        ctx.beginPath();
+        ctx.moveTo(x0, y);
+        ctx.lineTo(x1, y);
+        ctx.stroke();
+      }
+    }
+
     function drawObstacles() {
       obstacles.forEach((o, idx) => {
         const x = o.x * width;
@@ -752,10 +816,10 @@
         const h = o.h * height;
 
         ctx.save();
-        drawRoundedRect(x, y, w, h, 10);
-        ctx.fillStyle = "rgba(15, 23, 42, 0.06)";
+        drawRoundedRect(x + 2, y + 2, w - 4, h - 4, 6);
+        ctx.fillStyle = "rgba(15, 23, 42, 0.16)";
         ctx.fill();
-        ctx.strokeStyle = idx % 2 === 0 ? "rgba(37, 99, 235, 0.22)" : "rgba(14, 165, 233, 0.2)";
+        ctx.strokeStyle = idx % 2 === 0 ? "rgba(37, 99, 235, 0.35)" : "rgba(14, 165, 233, 0.32)";
         ctx.lineWidth = 1.5;
         ctx.stroke();
         ctx.restore();
@@ -768,15 +832,15 @@
       agentSpecs.forEach((spec) => {
         const pts = spec.nodes.map(([x, y]) => ({ x, y }));
 
-        // faint dashed path
+        // visible dashed path
         ctx.beginPath();
         ctx.moveTo(pts[0].x * width, pts[0].y * height);
         for (let i = 1; i < pts.length; i++) {
           ctx.lineTo(pts[i].x * width, pts[i].y * height);
         }
-        ctx.strokeStyle = `rgba(${spec.color}, 0.22)`;
-        ctx.lineWidth = 1.6;
-        ctx.setLineDash([1, 6]);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.4)`;
+        ctx.lineWidth = 2;
+        ctx.setLineDash([2, 5]);
         ctx.stroke();
         ctx.setLineDash([]);
 
@@ -785,58 +849,79 @@
         const tan = pathTangent(pts, u);
         const angle = Math.atan2(tan.y, tan.x);
 
-        // short trail
-        const trailU = Math.max(0, u - 0.04);
+        // trail behind the agent
+        const trailU = Math.max(0, u - 0.05);
         const trailPos = pathPoint(pts, trailU);
         ctx.beginPath();
         ctx.moveTo(trailPos.x, trailPos.y);
         ctx.lineTo(pos.x, pos.y);
-        ctx.strokeStyle = `rgba(${spec.color}, 0.28)`;
-        ctx.lineWidth = 3;
+        ctx.strokeStyle = `rgba(${spec.color}, 0.5)`;
+        ctx.lineWidth = 4;
         ctx.stroke();
 
-        // start / goal markers
+        // start marker (square)
         const start = { x: pts[0].x * width, y: pts[0].y * height };
+        ctx.save();
+        ctx.translate(start.x, start.y);
+        ctx.fillStyle = `rgba(${spec.color}, 0.5)`;
+        ctx.fillRect(-4, -4, 8, 8);
+        ctx.restore();
+
+        // goal marker (diamond)
         const goal = { x: pts[pts.length - 1].x * width, y: pts[pts.length - 1].y * height };
-        ctx.beginPath();
-        ctx.arc(goal.x, goal.y, 4, 0, Math.PI * 2);
-        ctx.strokeStyle = `rgba(${spec.color}, 0.35)`;
-        ctx.lineWidth = 1.5;
-        ctx.stroke();
+        ctx.save();
+        ctx.translate(goal.x, goal.y);
+        ctx.rotate(Math.PI / 4);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.65)`;
+        ctx.lineWidth = 2;
+        ctx.strokeRect(-6, -6, 12, 12);
+        ctx.restore();
 
         // agent glyph
         ctx.save();
         ctx.translate(pos.x, pos.y);
         ctx.rotate(angle);
+
         ctx.beginPath();
-        ctx.arc(0, 0, 6, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${spec.color}, 0.85)`;
+        ctx.arc(0, 0, 15, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${spec.color}, 0.1)`;
+        ctx.fill();
+
+        ctx.beginPath();
+        ctx.arc(0, 0, 7.5, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${spec.color}, 0.95)`;
         ctx.fill();
         ctx.beginPath();
-        ctx.moveTo(6, 0);
-        ctx.lineTo(11, 0);
-        ctx.strokeStyle = `rgba(${spec.color}, 0.85)`;
-        ctx.lineWidth = 2;
+        ctx.arc(0, 0, 7.5, 0, Math.PI * 2);
+        ctx.strokeStyle = "rgba(255, 255, 255, 0.9)";
+        ctx.lineWidth = 1.4;
+        ctx.stroke();
+
+        ctx.beginPath();
+        ctx.moveTo(7.5, 0);
+        ctx.lineTo(14, 0);
+        ctx.strokeStyle = `rgba(${spec.color}, 0.95)`;
+        ctx.lineWidth = 2.4;
         ctx.stroke();
         ctx.restore();
 
         positions.push(pos);
       });
 
-      // faint communication links when agents are near each other
+      // communication links when agents are near each other
       for (let i = 0; i < positions.length; i++) {
         for (let j = i + 1; j < positions.length; j++) {
           const dx = positions[i].x - positions[j].x;
           const dy = positions[i].y - positions[j].y;
           const dist = Math.hypot(dx, dy);
-          const threshold = Math.min(width, height) * 0.28;
+          const threshold = Math.min(width, height) * 0.32;
           if (dist < threshold) {
-            const alpha = 0.12 * (1 - dist / threshold);
+            const alpha = 0.22 * (1 - dist / threshold);
             ctx.beginPath();
             ctx.moveTo(positions[i].x, positions[i].y);
             ctx.lineTo(positions[j].x, positions[j].y);
             ctx.strokeStyle = `rgba(15, 23, 42, ${alpha})`;
-            ctx.lineWidth = 1;
+            ctx.lineWidth = 1.2;
             ctx.stroke();
           }
         }
@@ -846,6 +931,7 @@
     function draw() {
       drawBackground();
       drawParticles();
+      drawGridArea();
       drawObstacles();
       drawAgents();
 
