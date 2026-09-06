@@ -211,6 +211,70 @@
       font-weight: 600;
     }
 
+    .exp-list {
+      display: grid;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .exp {
+      background: rgba(255, 255, 255, 0.88);
+      border: 1px solid var(--border);
+      border-radius: 16px;
+      padding: 18px 20px;
+      box-shadow: 0 8px 20px rgba(15, 23, 42, 0.05);
+      backdrop-filter: blur(8px);
+    }
+
+    .exp-header {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 8px;
+      margin-bottom: 4px;
+    }
+
+    .exp h3 {
+      margin: 0;
+      font-size: 1.04rem;
+      color: var(--brand);
+    }
+
+    .exp .exp-date {
+      font-size: 0.85rem;
+      color: var(--muted);
+      white-space: nowrap;
+    }
+
+    .exp .exp-org {
+      margin: 0 0 8px;
+      font-size: 0.95rem;
+      color: var(--accent);
+      font-weight: 600;
+    }
+
+    .exp .desc {
+      margin: 0;
+      color: #374151;
+    }
+
+    .tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 12px;
+    }
+
+    .tag {
+      font-size: 0.78rem;
+      color: var(--brand);
+      background: rgba(37, 99, 235, 0.08);
+      border: 1px solid rgba(37, 99, 235, 0.18);
+      border-radius: 999px;
+      padding: 4px 10px;
+    }
+
     .contact-grid {
       display: grid;
       gap: 12px;
@@ -270,7 +334,7 @@
         padding-top: 42px;
       }
 
-      .card, .pub, .contact-item {
+      .card, .pub, .exp, .contact-item {
         padding: 18px;
       }
     }
@@ -296,6 +360,7 @@
       <div class="nav-inner">
         <a href="#about">About</a>
         <a href="#publications">Publications</a>
+        <a href="#experience">Experience</a>
         <a href="#contact">Contact</a>
       </div>
     </nav>
@@ -388,6 +453,59 @@
         </div>
       </section>
 
+      <section id="experience">
+        <h2>Experience</h2>
+        <div class="exp-list">
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Givens Associate — Nonstationary MARL</h3>
+              <span class="exp-date">June 2026 – August 2026</span>
+            </div>
+            <p class="exp-org">Argonne National Laboratory · Lemont, IL, USA</p>
+            <p class="desc">
+              Designed and implemented a distributed actor-critic reinforcement learning framework to address learning-induced non-stationarity in multi-agent systems under partial observability. Proved finite-time convergence guarantees to global optima and validated the framework empirically on multi-robot hardware, opening new research directions for agentic AI-based systems.
+            </p>
+            <div class="tags">
+              <span class="tag">Multi-Agent RL</span>
+              <span class="tag">Non-stationarity</span>
+              <span class="tag">Robotics</span>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Associate Data Scientist</h3>
+              <span class="exp-date">July 2023 – May 2024</span>
+            </div>
+            <p class="exp-org">IDFC First Bank · Mumbai, India</p>
+            <p class="desc">
+              Developed and deployed production machine learning models (Random Forest, XGBoost) to score customer risk for the Business Intelligence Unit, enhancing interpretability and decision-making efficiency. Built SQL/Python data pipelines for scorecard monitoring and performance dashboards for the Collections team. Shipped a generative AI model for customer language-preference detection, improving overall customer experience by 3.4%.
+            </p>
+            <div class="tags">
+              <span class="tag">ML in Production</span>
+              <span class="tag">Data Pipelines</span>
+              <span class="tag">Generative AI</span>
+            </div>
+          </article>
+
+          <article class="exp">
+            <div class="exp-header">
+              <h3>Data Science Intern</h3>
+              <span class="exp-date">May 2022 – September 2022</span>
+            </div>
+            <p class="exp-org">TCS Research · Kolkata, India</p>
+            <p class="desc">
+              Trained a GAN-based image reconstruction pipeline to restore low-quality satellite imagery for downstream vision and navigation tasks. Deployed a CNN-based regression model for satellite pose and orientation estimation with 95% accuracy, improving localization precision and enabling automated satellite control.
+            </p>
+            <div class="tags">
+              <span class="tag">GANs</span>
+              <span class="tag">Computer Vision</span>
+              <span class="tag">Satellite Imaging</span>
+            </div>
+          </article>
+        </div>
+      </section>
+
       <section id="contact">
         <h2>Contact</h2>
         <div class="contact-grid">
@@ -398,11 +516,11 @@
           </div>
           <div class="contact-item">
             <span class="label">Google Scholar</span>
-            <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Ritirupa Dey</a>
+            <a href="https://scholar.google.com/citations?user=foNCrdoAAAAJ&hl=en&oi=ao" target="_blank" rel="noopener noreferrer">Scholar profile</a>
           </div>
           <div class="contact-item">
             <span class="label">LinkedIn</span>
-            <a href="https://www.linkedin.com/in/ritirupa-dey-7524b9209/" target="_blank" rel="noopener noreferrer">Ritirupa Dey</a>
+            <a href="#" target="_blank" rel="noopener noreferrer">Add your LinkedIn</a>
           </div>
         </div>
       </section>
